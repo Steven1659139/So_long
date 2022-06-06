@@ -1,16 +1,21 @@
 NAME = so_long
 
-SRCS = so_long.c
+SRCS = so_long.c my_mlx_pixel_put.c test_form.c
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra -Lmlx -lmlx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Werror -Wextra
+
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
+
+%.o: %.c
+	gcc $(CFLAGS) -Imlx -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
-	gcc $(CFLAGS) $(OBJS) ./Libft/libft.a -o $(NAME)
+	gcc $(CFLAGS) $(OBJS) ./Libft/libft.a $(MLXFLAGS) -o $(NAME)
 
 clean:
 	@$(MAKE) -C  Libft fclean
