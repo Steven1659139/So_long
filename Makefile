@@ -8,6 +8,9 @@ CFLAGS = -Wall -Werror -Wextra
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
+BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
+COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')
+
 %.o: %.c
 	gcc $(CFLAGS) -Imlx -c $< -o $@
 
@@ -27,7 +30,10 @@ fclean: clean
 re: fclean all
 
 add:
-	git add *.c *.h Makefile
+	git add *.c *.h Makefile *.xpm *.ber
 	git status
-push:
-	git push origin master
+
+p:
+	git branch
+	git push origin $(BRANCH)
+do:
