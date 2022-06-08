@@ -33,7 +33,12 @@ add:
 	git add *.c *.h Makefile *.xpm *.ber
 	git status
 
-p:
+status: add
 	git branch
+
+commit: status
+	git commit -m $(COMMIT)
+
+p: commit
 	git push origin $(BRANCH)
 do:
