@@ -10,6 +10,7 @@ MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
 COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')
+ANSWER ?= $(shell bash -c 'read -p "Is OK ? " answer; echo $$answer')
 
 %.o: %.c
 	gcc $(CFLAGS) -Imlx -c $< -o $@
@@ -37,8 +38,6 @@ status: add
 	git branch
 
 commit: status
-	git commit -m $(COMMIT)
-
+		git commit -m $(COMMIT)
 p: commit
 	git push origin $(BRANCH)
-do:
