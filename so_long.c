@@ -17,6 +17,8 @@ void map(char *argv)
 	}
 }
 
+
+
 int main(int argc, char **argv)
 {
 	
@@ -35,7 +37,9 @@ int main(int argc, char **argv)
 	img.adresse = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 
 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	put_square(&img, 400, 400, 50, 100, 0x00FF0000);
+	//put_square(&img, 400, 400, 50, 100, 0x00FF0000);
+	//put_circle(&img, 500, 500, 100, 0x00FF0000);
+	img.img = mlx_xpm_file_to_image(mlx, "TilesetFloor.xpm", &img.width, &img.height);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
