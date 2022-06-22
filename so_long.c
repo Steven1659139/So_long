@@ -6,10 +6,9 @@ int	tab_length(char **tab)
 
 	i = 0;
 
-	while (*tab)
+	while (tab[i])
 	{
 		i++;
-		tab++;
 	}
 
 	return (i);
@@ -40,6 +39,7 @@ char	**tab_join(char **tab, char *line)
 	}
 	new_tab[i++] = ft_strdup(line);
 	new_tab[i] = 0;
+	table_flip(tab);
 
 	return (new_tab);
 }
@@ -63,6 +63,7 @@ char **map(char *argv)
 		tab = tab_join(tab, line);
 		i++;
 	}
+	i--;
 	tab[i] = ft_strjoin(tab[i], "\n");
 	return (tab);
 }
@@ -84,10 +85,12 @@ int main(int argc, char **argv)
 		//print_tab(tab);
 	}
 
-	tab = tab_join(tab, "Allo\n");
-	print_tab(tab);
+	//tab = tab_join(tab, "Allo\n");
+	//print_tab(tab);
 
-	//check_map(tab, carte);
+	//tab_length(tab);
+
+	check_map(tab, carte);
 		
 
 // 	void	*mlx;

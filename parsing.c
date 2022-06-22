@@ -29,6 +29,7 @@ int	check_line(char *line, t_map *map)
 	if (*line != '1')
 		return (0);
 	line++;
+	
 	while (*line != '\n')
 	{
 		if (*line != '0' && *line != '1' && *line != 'E' && *line != 'C' && *line != 'P')
@@ -47,17 +48,28 @@ int	check_line(char *line, t_map *map)
 void check_map(char **tab, t_map *map)
 {
 	int	i;
+	int len;
 
 	i = 0;
+	len = tab_length(tab);
+	printf("len = %d\n", len);
 
-	if (!check_edge(tab[i]))
+	if (!check_edge(tab[i++]))
 		yo_its_wrong("La carte n'est pas fermée.");
-	while (tab[++i])
+	while (i < (len - 2))
 	{
-		printf("%s", tab[i]);
-		if (!check_line(tab[i], map))
+		printf("i = %d\n", i);
+		if (!check_line(tab[i++], map))
+		{
+			printf("%s\n", tab[i]);
+
+
+
 			yo_its_wrong("Carte non valide");
+		}
 	}
+	printf("%s\n", tab[i]);
+
 	if (!check_edge(tab[i]))
 		yo_its_wrong("La carte n'est pas fermé, bas");
 

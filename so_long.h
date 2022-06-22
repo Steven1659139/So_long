@@ -37,5 +37,6 @@ int		check_edge(char *line);
 int		check_line(char *line, t_map *map);
 void	check_map(char **tab, t_map *map);
 char **map(char *argv);
+int	tab_length(char **tab);
 
 #endif
