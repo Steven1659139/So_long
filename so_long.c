@@ -1,58 +1,69 @@
 #include "so_long.h"
 
-void	print_tab(char **tab)
+int	tab_length(char **tab)
 {
 	int	i;
 
-	i = -1;
-	while (tab[++i])
-		printf("%s", tab[i]);
+	i = 0;
+
+	while (*tab)
+	{
+		i++;
+		tab++;
+	}
+
+	return (i);
 }
 
-int	check_edge(char *line)
+char	**tab_join(char **tab, char *line)
 {
-	while (*line)
+	int		len;
+	char	**new_tab;
+	int		i;
+
+
+	i = 0;
+	if (!tab)
 	{
-		if (*line != '1')
-			return (0);
-		line++;
+		new_tab = malloc(sizeof (char *) * 2);
+		new_tab[i++] = ft_strdup(line);
+		new_tab[i] = NULL; 
+		return (new_tab);
 	}
-	return (1);
+	len = tab_length(tab);
+	new_tab = malloc ((len + 2) * sizeof(char *));
+
+	while (i < len)
+	{
+		new_tab[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	new_tab[i++] = ft_strdup(line);
+	new_tab[i] = 0;
+
+	return (new_tab);
 }
 
-int	check_line(char *line, t_map *map)
-{
-	if (*line != '1')
-		return (0);
-	line++;
-	while (*line)
-	{
-		if (*line != '0' || *line != '1' || *line != 'E' || *line != 'C' || *line != 'P')
-			return (0);
-		if (*line == 'E')
-			map->nb_exit++;
-		if (*line == 'C')
-			map->nb_collect++;
-		if (*line == 'P')
-			map->nb_player++;
-		line++;
-	}
-	return (1);
-}
 
 char **map(char *argv)
 {
-	int map;
+	int		carte;
 	char	**tab;
+	char	*line;
 	int		i;
 
-	map = open(argv, O_RDONLY, 0777);
-	i = -1;
-	tab = malloc(6 * sizeof(char *));
-	while (tab[i++])
+	carte = open(argv, O_RDONLY, 0777);
+	i = 0;
+	tab = NULL;
+	line = get_next_line(carte);
+	tab = tab_join(tab, line);
+	while (line)
 	{
-		tab[i] = get_next_line(map);
+		line = get_next_line(carte);
+		tab = tab_join(tab, line);
+		i++;
 	}
+	tab[i] = ft_strjoin(tab[i], "\n");
 	return (tab);
 }
 
@@ -62,16 +73,21 @@ int main(int argc, char **argv)
 {
 
 	char **tab;
+	t_map	*carte;
 
-
+	carte = malloc(sizeof (t_map));
 	tab = NULL;
-
 
 	if (argc)
 	{
 		tab = map(argv[1]);
-		print_tab(tab);
+		//print_tab(tab);
 	}
+
+	tab = tab_join(tab, "Allo\n");
+	print_tab(tab);
+
+	//check_map(tab, carte);
 		
 
 // 	void	*mlx;

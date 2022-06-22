@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = so_long.c my_mlx_pixel_put.c test_form.c
+SRCS = so_long.c my_mlx_pixel_put.c test_form.c parsing.c
 
 OBJS = $(SRCS:.c=.o)
 
