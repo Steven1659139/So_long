@@ -4,7 +4,7 @@ SRCS = so_long.c my_mlx_pixel_put.c test_form.c
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
@@ -34,10 +34,10 @@ add:
 	git add *.c *.h Makefile *.xpm *.ber
 	git status
 
-status: add
+stat: add
 	git branch
 
-commit: status
+com: stat
 		git commit -m $(COMMIT)
-p: commit
+p: com
 	git push origin $(BRANCH)

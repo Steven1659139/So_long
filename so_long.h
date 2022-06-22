@@ -17,6 +17,13 @@ typedef struct s_image
 	int		endian;
 }				t_image;
 
+typedef struct s_map
+{
+	int	nb_exit;
+	int nb_player;
+	int nb_collect;
+}				t_map;
+
 #define mem_dec "(y * line_length + x * (bits_per_pixel / 8))"
 
 void	my_mlx_pixel_put(t_image *img, int x, int y, int color);
