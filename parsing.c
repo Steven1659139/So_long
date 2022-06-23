@@ -1,5 +1,20 @@
 #include "so_long.h"
 
+/* 
+	TO_DO
+
+	- gérer les espaces vides en fin de fichier OK
+	- seg_fault quand pas d'argument OK
+	- .ber obligatoire OK
+	- longueur des lignes uniformes OK
+
+
+
+
+*/
+
+
+
 void	print_tab(char **tab)
 {
 	int	i;
@@ -10,12 +25,15 @@ void	print_tab(char **tab)
 	i = -1;
 	while (tab[++i])
 		printf("%s", tab[i]);
-	printf("\n");
+	//printf("\n");
 }
 
-int	check_edge(char *line)
+int	check_edge(char *line, t_map *map)
 {
-	while (*line != '\n')
+	if (ft_strlen(line) != map->len_line)
+		return (0);
+
+	while (*line != '\n' && *line != '\0')
 	{
 		if (*line != '1')
 			return (0);
@@ -26,6 +44,9 @@ int	check_edge(char *line)
 
 int	check_line(char *line, t_map *map)
 {
+	if (map->len_line != ft_strlen(line))
+		return (0);
+
 	if (*line != '1')
 		return (0);
 	line++;
@@ -48,30 +69,44 @@ int	check_line(char *line, t_map *map)
 void check_map(char **tab, t_map *map)
 {
 	int	i;
-	int len;
+	int tab_len;
 
 	i = 0;
-	len = tab_length(tab);
-	printf("len = %d\n", len);
+	tab_len = tab_length(tab);
+	map->len_line = ft_strlen(tab[i]);
 
-	if (!check_edge(tab[i++]))
-		yo_its_wrong("La carte n'est pas fermée.");
-	while (i < (len - 2))
+	//printf("tab_len = %d\n", tab_len);
+
+	if (!check_edge(tab[i++], map))
 	{
-		printf("i = %d\n", i);
+		printf("%s\n", tab[--i]);
+		yo_its_wrong("Le haut de la carte n'est pas fermée.");
+
+
+
+	}
+	while (i < (tab_len - 1))
+	{
+		//printf("i = %d\n", i);
 		if (!check_line(tab[i++], map))
 		{
-			printf("%s\n", tab[i]);
+			printf("%s\n", tab[--i]);
 
 
 
 			yo_its_wrong("Carte non valide");
 		}
 	}
-	printf("%s\n", tab[i]);
+	//printf("%s\n", tab[i]);
 
-	if (!check_edge(tab[i]))
-		yo_its_wrong("La carte n'est pas fermé, bas");
+	if (!check_edge(tab[i], map))
+	{
+		printf("%s\n", tab[i]);
+		
+		yo_its_wrong("Le bas de la carte n'est pas fermé.");
+
+
+	}
 
 
 

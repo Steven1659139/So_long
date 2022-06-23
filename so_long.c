@@ -14,6 +14,26 @@ int	tab_length(char **tab)
 	return (i);
 }
 
+char	**tab_trunc(char **tab, char *str)
+{
+	int	i;
+	char	**new_tab;
+
+	i = 0;
+	new_tab = NULL;
+
+	if (!tab)
+		return (0);
+	while (ft_strncmp(tab[i], str, ft_strlen(tab[i])) != 0)
+	{
+		new_tab = tab_join(new_tab, tab[i]);
+		i++;
+	}
+	new_tab[i] = NULL;
+	table_flip(tab);
+	return (new_tab);
+}
+
 char	**tab_join(char **tab, char *line)
 {
 	int		len;
@@ -53,6 +73,8 @@ char **map(char *argv)
 	int		i;
 
 	carte = open(argv, O_RDONLY, 0777);
+	if (carte == -1)
+		yo_its_wrong("Erreur lors de la lecture du fichier.");
 	i = 0;
 	tab = NULL;
 	line = get_next_line(carte);
@@ -61,10 +83,15 @@ char **map(char *argv)
 	{
 		line = get_next_line(carte);
 		tab = tab_join(tab, line);
+		if (!ft_strchr(tab[i], '\n'))
+			tab[i] = ft_strjoin(tab[i], "\n");
 		i++;
 	}
-	i--;
-	tab[i] = ft_strjoin(tab[i], "\n");
+	//print_tab(tab);
+	tab = tab_trunc(tab, "\n");
+	//print_tab(tab);
+	
+
 	return (tab);
 }
 
@@ -79,10 +106,19 @@ int main(int argc, char **argv)
 	carte = malloc(sizeof (t_map));
 	tab = NULL;
 
-	if (argc)
+	
+
+
+
+	if (argc == 2)
 	{
+		if (ft_strncmp(ft_strchr(argv[1], '.'), ".ber", ft_strlen(argv[1])))
+			yo_its_wrong("Le fichier doit être de type .ber");
+		
 		tab = map(argv[1]);
+
 		//print_tab(tab);
+		check_map(tab, carte);
 	}
 
 	//tab = tab_join(tab, "Allo\n");
@@ -90,7 +126,7 @@ int main(int argc, char **argv)
 
 	//tab_length(tab);
 
-	check_map(tab, carte);
+	
 		
 
 // 	void	*mlx;

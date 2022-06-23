@@ -31,6 +31,7 @@ fclean: clean
 re: fclean all
 
 add:
+	@$(MAKE) -C Libft add
 	git add *.c *.h Makefile *.xpm *.ber
 	git status
 
@@ -40,4 +41,5 @@ stat: add
 com: stat
 		git commit -m $(COMMIT)
 p: com
+	@$(MAKE) -C Libft push
 	git push origin $(BRANCH)
