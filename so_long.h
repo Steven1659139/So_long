@@ -4,7 +4,7 @@
 #include "fcntl.h"
 #include "Libft/libft.h"
 #include "stdio.h"
-#include "mlx.h"
+#include "MinilibX/mlx.h"
 
 typedef struct s_image
 {

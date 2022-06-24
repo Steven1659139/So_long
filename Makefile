@@ -6,7 +6,7 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS = -framework OpenGL -framework AppKit
 
 BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
 COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')
@@ -19,7 +19,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
-	gcc $(CFLAGS) $(OBJS) ./Libft/libft.a $(MLXFLAGS) -o $(NAME)
+	gcc $(CFLAGS) $(OBJS) ./Libft/libft.a MinilibX/libmlx.a $(MLXFLAGS) -o $(NAME)
 
 clean:
 	@$(MAKE) -C  Libft fclean
