@@ -35,6 +35,9 @@ add:
 	git add *.c *.h Makefile *.xpm *.ber
 	git status
 
+sub:
+	git submodule update --init --recursive
+
 stat: add
 	git branch
 
