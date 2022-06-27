@@ -46,3 +46,9 @@ com: stat
 p: com
 	@$(MAKE) -C Libft push
 	git push origin $(BRANCH)
+
+merge:
+	git checkout master
+	git fetch
+	git pull
+	git merge $(BRANCH)
