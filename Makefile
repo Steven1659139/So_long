@@ -52,3 +52,5 @@ merge:
 	git fetch
 	git pull
 	git merge $(BRANCH)
+go:
+	git checkout $(BRANCH)
