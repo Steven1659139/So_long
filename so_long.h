@@ -18,6 +18,23 @@ typedef struct s_image
 	char	*path;
 }				t_image;
 
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+	t_image player;
+}			t_player;
+
+typedef struct s_case
+{
+	t_case	*right;
+	t_case	*left;
+	t_case	*up;
+	t_case	*down;
+	char	state;
+	t_image	block;
+}			t_case;
+
 typedef struct s_map
 {
 	int	nb_exit;
@@ -33,11 +50,29 @@ typedef struct s_map
 	t_image floor;
 	t_image ennemi;
 	t_image wall;
-	t_image player;
 	t_image collectible;
 	t_image exit;
+	t_player player;
+
+	t_case *first_cel;
+	t_case *player_cel;
 
 }				t_map;
+
+// typedef struct s_data
+// {
+
+
+
+
+
+
+
+// }
+
+
+
+
 
 #define mem_dec "(y * line_length + x * (bits_per_pixel / 8))"
 
@@ -58,5 +93,6 @@ void print_map(t_map *map);
 
 int	print_keycode(int keycode);
 int keycode_event(int keycode, t_map *map);
+void move_right(t_map *map);
 
 #endif
