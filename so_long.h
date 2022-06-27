@@ -15,6 +15,7 @@ typedef struct s_image
 	int		width;
 	int		height;
 	int		endian;
+	char	*path;
 }				t_image;
 
 typedef struct s_map
@@ -24,6 +25,17 @@ typedef struct s_map
 	int nb_collect;
 	size_t len_line;
 	int	nb_line;
+	int	win_size_x;
+	int	win_size_y;
+	char	**map;
+	void	*mlx;
+	void	*mlx_win;
+	t_image floor;
+	t_image ennemi;
+	t_image wall;
+	t_image player;
+	t_image collectible;
+	t_image exit;
 
 }				t_map;
 
@@ -40,5 +52,8 @@ char **map(char *argv);
 int	tab_length(char **tab);
 char	**tab_join(char **tab, char *line);
 char	**tab_trunc(char **tab, char *str);
+void	set_image(t_map *map, void *mlx);
+void	put_image(t_map *map, t_image image, int x, int y);
+void print_map(t_map *map);
 
 #endif

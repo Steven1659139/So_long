@@ -1,12 +1,12 @@
 NAME = so_long
 
-SRCS = so_long.c my_mlx_pixel_put.c test_form.c parsing.c
+SRCS = so_long.c my_mlx_pixel_put.c test_form.c parsing.c image.c map.c
 
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-MLXFLAGS = -framework OpenGL -framework AppKit
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
 COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')
