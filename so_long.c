@@ -65,23 +65,23 @@ char	**tab_join(char **tab, char *line)
 }
 
 
-char **map(char *argv)
+char **set_map(char *argv)
 {
-	int		carte;
+	int		map;
 	char	**tab;
 	char	*line;
 	int		i;
 
-	carte = open(argv, O_RDONLY, 0777);
-	if (carte == -1)
+	map = open(argv, O_RDONLY, 0777);
+	if (map == -1)
 		yo_its_wrong("Erreur lors de la lecture du fichier.");
 	i = 0;
 	tab = NULL;
-	line = get_next_line(carte);
+	line = get_next_line(map);
 	tab = tab_join(tab, line);
 	while (line)
 	{
-		line = get_next_line(carte);
+		line = get_next_line(map);
 		tab = tab_join(tab, line);
 		if (!ft_strchr(tab[i], '\n'))
 			tab[i] = ft_strjoin(tab[i], "\n");
@@ -100,12 +100,9 @@ char **map(char *argv)
 int main(int argc, char **argv)
 {
 
-	char **tab;
-	t_map	*carte;
+	t_map	*map;
 
-	carte = malloc(sizeof (t_map));
-	tab = NULL;
-
+	map = malloc(sizeof (t_map));
 	
 
 
@@ -115,10 +112,10 @@ int main(int argc, char **argv)
 		if (ft_strncmp(ft_strchr(argv[1], '.'), ".ber", ft_strlen(argv[1])))
 			yo_its_wrong("Le fichier doit être de type .ber");
 		
-		tab = map(argv[1]);
+		map->map = set_map(argv[1]);
 
 		//print_tab(tab);
-		check_map(tab, carte);
+		check_map(map->map, map);
 	}
 
 	//tab = tab_join(tab, "Allo\n");
@@ -126,24 +123,14 @@ int main(int argc, char **argv)
 
 	//tab_length(tab);
 
-	
-		
+	map->win_size_x = (ft_strlen(map->map[0]) * 30) - 30;
+	map->win_size_y = (tab_length(map->map) * 30);
 
-// 	void	*mlx;
-// 	void	*mlx_win;
-// 	t_image	img;
+	map->mlx = mlx_init();
+	map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, map->win_size_y, "So_long");
 
+	set_image(map, map->mlx);
+	print_map(map);
 
-
-// 	mlx = mlx_init();
-// 	mlx_win = mlx_new_window(mlx, 1920, 1080, "So_long");
-// 	img.img = mlx_new_image(mlx, 1920, 1080);
-// 	img.adresse = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-
-// 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-// 	//put_square(&img, 400, 400, 50, 100, 0x00FF0000);
-// 	//put_circle(&img, 500, 500, 100, 0x00FF0000);
-// 	img.img = mlx_xpm_file_to_image(mlx, "TilesetFloor.xpm", &img.width, &img.height);
-// 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-// 	mlx_loop(mlx);
+	mlx_loop(map->mlx);
 }
