@@ -97,6 +97,13 @@ char **set_map(char *argv)
 
 
 
+int boom(t_map *map, int keycode)
+{
+	if (keycode == 53)
+		mlx_destroy_window(map->mlx, map->mlx_win);
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
 
@@ -116,21 +123,19 @@ int main(int argc, char **argv)
 
 		//print_tab(tab);
 		check_map(map->map, map);
+		map->win_size_x = (ft_strlen(map->map[0]) * 30) - 30;
+		map->win_size_y = (tab_length(map->map) * 30);
+
+		map->mlx = mlx_init();
+		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, map->win_size_y, "So_long");
+
+		set_image(map, map->mlx);
+		print_map(map);
+
+		mlx_key_hook(map->mlx_win, keycode_event, map);
+
+		mlx_loop(map->mlx);
 	}
 
-	//tab = tab_join(tab, "Allo\n");
-	//print_tab(tab);
 
-	//tab_length(tab);
-
-	map->win_size_x = (ft_strlen(map->map[0]) * 30) - 30;
-	map->win_size_y = (tab_length(map->map) * 30);
-
-	map->mlx = mlx_init();
-	map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, map->win_size_y, "So_long");
-
-	set_image(map, map->mlx);
-	print_map(map);
-
-	mlx_loop(map->mlx);
 }

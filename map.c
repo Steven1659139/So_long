@@ -15,11 +15,9 @@ void print_map(t_map *map)
 
 	while(map->map[l] != NULL)
 	{
-		printf("%s",map->map[l]);
 		while(map->map[l][c] != '\n')
 		{
 			put_image(map, map->floor, x ,y);
-			printf("%c\n", map->map[l][c]);
 			if (map->map[l][c] == '1')
 				put_image(map, map->wall, x, y);
 			else if (map->map[l][c] == '0')

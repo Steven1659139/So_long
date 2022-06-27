@@ -12,7 +12,7 @@ void	set_image(t_map *map, void *mlx)
 	map->exit.path = "exit.xpm";
 	map->wall.path = "wall.xpm";
 	map->collectible.path = "flower_1.xpm";
-	map->player.path = "frog_1.xpm";
+	map->player.path = "frog_2.xpm";
 
 	map->floor.img = mlx_new_image(mlx, 1920, 1080);
 	map->wall.img = mlx_new_image(mlx, 1920, 1080);
