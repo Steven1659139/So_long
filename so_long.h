@@ -56,4 +56,7 @@ void	set_image(t_map *map, void *mlx);
 void	put_image(t_map *map, t_image image, int x, int y);
 void print_map(t_map *map);
 
+int	print_keycode(int keycode);
+int keycode_event(int keycode, t_map *map);
+
 #endif
