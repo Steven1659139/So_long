@@ -50,6 +50,7 @@ typedef struct s_map
 	int	nb_move;
 	t_pos	*pos_wall;
 	t_pos	*pos_collect;
+	t_pos	*pos_exit;
 	size_t len_line;
 	int	nb_line;
 	int	nb_wall;
@@ -120,5 +121,7 @@ int	is_wall(t_map *map, int x, int y);
 int	is_collect(t_map *map);
 void	update_collect(t_map *map, t_pos pos);
 void	set_collectible(t_map *map);
+int	is_exit(t_map *map, int	x, int y);
+void	set_exit(t_map *map);
 
 #endif

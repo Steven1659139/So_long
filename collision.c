@@ -65,6 +65,66 @@ void	set_collectible(t_map *map)
 	}
 }
 
+void	set_exit(t_map *map)
+{
+	t_case	*cel;
+	t_case	*next_line;
+	int		i;
+
+	map->pos_exit = malloc(sizeof(t_pos) * map->nb_exit);
+
+	cel = map->first_cel;
+	i = 0;
+
+	while(cel->down)
+	{
+		next_line = cel->down;
+		while(cel->right)
+		{
+			if (cel->state == 'C')
+			{
+				map->pos_exit[i] = cel->pos;
+				i++;
+			}
+			cel = cel->right;
+		}
+		cel = next_line;
+	}
+	i = 0;
+
+	while(i < map->nb_exit)
+	{
+		printf("%d- exit x,y = %d,%d\n", i, map->pos_exit[i].x, map->pos_exit[i].y);
+		i++;
+
+
+
+
+	}
+}
+
+int	is_exit(t_map *map, int	x, int y)
+{
+	int	i;
+
+	i = 0;
+	if (map->col_on_map == 0)
+	{
+
+		while (i < map->nb_exit)
+		{
+			if (map->player.pos.x + x == map->pos_exit[i].x && map->player.pos.y + y == map->pos_exit[i].y)
+			{
+				exit(0);
+				return (1);
+			}
+			i++;
+		}
+	}
+	return (0);
+}
+
+
 int	is_wall(t_map *map, int	x, int y)
 {
 	int	i;

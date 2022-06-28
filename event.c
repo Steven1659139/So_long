@@ -32,3 +32,12 @@ int keycode_event(int keycode, t_map *map)
 	return (0);
 	
 }
+
+void	quit()
+{
+	exit(0);
+
+
+
+
+}

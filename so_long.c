@@ -135,6 +135,7 @@ int main(int argc, char **argv)
 		print_map(map);
 		set_wall(map);
 		set_collectible(map);
+		set_exit(map);
 		mlx_key_hook(map->mlx_win, keycode_event, map);
 
 		mlx_loop(map->mlx);
