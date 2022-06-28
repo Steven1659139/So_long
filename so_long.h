@@ -32,7 +32,9 @@ typedef struct s_case
 	struct 	s_case	*up;
 	struct 	s_case	*down;
 	char	state;
-	t_image	block;
+	int		x;
+	int		y;
+	t_image	image;
 }			t_case;
 
 typedef struct s_map
@@ -98,5 +100,6 @@ void	add_cel(t_case *cel);
 void	create_first_line(t_map *map);
 t_case	*create_mid_line(t_case *prev_line);
 void	set_case(t_map	*map);
+void	set_cel_image(t_map *map, t_case *cel);
 
 #endif

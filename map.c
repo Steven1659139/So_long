@@ -1,46 +1,84 @@
 #include "so_long.h"
 
 
-void print_map(t_map *map)
-{
-	int	l;
-	int	c;
-	int	x;
-	int	y;
+// void print_map(t_map *map)
+// {
+// 	int	l;
+// 	int	c;
+// 	int	x;
+// 	int	y;
 
-	l = 0;
-	c = 0;
+// 	l = 0;
+// 	c = 0;
+// 	x = 0;
+// 	y = 0;
+
+// 	while(map->map[l] != NULL)
+// 	{
+// 		while(map->map[l][c] != '\n')
+// 		{
+// 			put_image(map, map->floor, x ,y);
+// 			if (map->map[l][c] == '1')
+// 				put_image(map, map->wall, x, y);
+// 			else if (map->map[l][c] == '0')
+// 				put_image(map, map->floor, x, y);
+// 			else if (map->map[l][c] == 'P')
+// 			{
+// 				put_image(map, map->player.player, x, y);
+// 				map->player.pos_x = x;
+// 				map->player.pos_y = y;
+// 			}
+// 			else if (map->map[l][c] == 'E')
+// 				put_image(map, map->exit, x, y);
+// 			else if (map->map[l][c] == 'C')
+// 				put_image(map, map->collectible, x, y);
+// 			c++;
+// 			x += 30;
+// 		}
+// 		l++;
+// 		c = 0;
+// 		y += 30;
+// 		x = 0;
+// 	}
+// }
+
+void	print_map(t_map *map)
+{
+	t_case	*cel;
+	t_case	*next_line;
+	int		x;
+	int		y;
+
 	x = 0;
 	y = 0;
 
-	while(map->map[l] != NULL)
+	cel = map->first_cel;
+
+	while(cel->down)
 	{
-		while(map->map[l][c] != '\n')
+		next_line = cel->down;
+		while(cel->right)
 		{
-			put_image(map, map->floor, x ,y);
-			if (map->map[l][c] == '1')
-				put_image(map, map->wall, x, y);
-			else if (map->map[l][c] == '0')
-				put_image(map, map->floor, x, y);
-			else if (map->map[l][c] == 'P')
-			{
-				put_image(map, map->player.player, x, y);
-				map->player.pos_x = x;
-				map->player.pos_y = y;
-			}
-			else if (map->map[l][c] == 'E')
-				put_image(map, map->exit, x, y);
-			else if (map->map[l][c] == 'C')
-				put_image(map, map->collectible, x, y);
-			c++;
+			put_image(map, cel->image, x, y);
+			cel->x = x;
+			cel->y = y;
+			printf("%c", cel->state);
+			cel = cel->right;
 			x += 30;
 		}
-		l++;
-		c = 0;
-		y += 30;
+		printf("\n");
 		x = 0;
+		y += 30;
+		cel = next_line;
 	}
+
+
+
+
+
+
 }
+
 
 // t_case **set_case(t_map *map)
 // {
@@ -56,7 +94,7 @@ void print_map(t_map *map)
 // 	y = 0;
 
 // 	cel = malloc(sizeof(t_case));
-// 	map->first_cel = &cel;
+// 	map->cel = &cel;
 // 	while(map->map[l] != NULL)
 // 	{
 // 		while(map->map[l][c] != '\n')
@@ -86,7 +124,7 @@ void print_map(t_map *map)
 // 	y = tab_length(map->map);
 
 // 	cel = malloc(sizeof(t_case));
-// 	map->first_cel = cel;
+// 	map->cel = cel;
 // 	while (x)
 // 	{
 // 		add_cel(cel);
@@ -101,6 +139,35 @@ void print_map(t_map *map)
 
 // }
 
+void update_cel(t_map *map)
+{
+	t_case	*cel;
+	t_case	*next_line;
+	int		l;
+	int		c;
+
+	c = 0;
+	l = 0;
+
+	cel = map->first_cel;
+	while (map->map[l])
+	{
+		next_line = cel->down;
+		while(map->map[l][c] != '\n')
+		{
+			//printf("%c", map->map[l][c]);
+			cel->state = map->map[l][c];
+			set_cel_image(map, cel);
+			cel = cel->right;
+			c++;
+		}
+		//printf("\n");
+		l++;
+		c = 0;
+		cel = next_line;
+	}
+}
+
 void	set_case(t_map	*map)
 {
 	int	y;
@@ -113,24 +180,17 @@ void	set_case(t_map	*map)
 
 	while (y)
 	{
+		//printf("y = %d\n", y);
 		prev_line = create_mid_line(prev_line);
 		y--;
 	}
-	while (map->first_cel->down)
+	while(prev_line->right)
 	{
-		map->first_cel->state = '1';
-		printf("state down = %c\n", map->first_cel->state);
-		map->first_cel = map->first_cel->down;
-
-
-
-
-
+		prev_line->down = NULL;
+		prev_line = prev_line->right;
 	}
 
-
-
-
+	update_cel(map);
 }
 
 void	create_first_line(t_map *map)
@@ -143,7 +203,7 @@ void	create_first_line(t_map *map)
 	map->first_cel = cel;
 
 	x = map->len_line - 1;
-	printf("x = %d\n", x);
+	//printf("x = %d\n", x);
 
 	while (x)
 	{
@@ -154,12 +214,7 @@ void	create_first_line(t_map *map)
 	}
 	cel->right = NULL;
 	cel = map->first_cel;
-	while (cel->right)
-	{
-		cel->state = '1';
-		printf("state %c\n", cel->state);
-		cel = cel->right;
-	}
+
 }
 
 t_case	*create_mid_line(t_case *prev_line)
