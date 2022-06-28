@@ -60,8 +60,10 @@ void	print_map(t_map *map)
 		while(cel->right)
 		{
 			put_image(map, cel->image, x, y);
-			cel->x = x;
-			cel->y = y;
+			cel->pos.x = x;
+			cel->pos.y = y;
+			if (cel->state == 'P')
+				map->player.pos = cel->pos;
 			printf("%c", cel->state);
 			cel = cel->right;
 			x += 30;
@@ -71,12 +73,6 @@ void	print_map(t_map *map)
 		y += 30;
 		cel = next_line;
 	}
-
-
-
-
-
-
 }
 
 
@@ -148,20 +144,17 @@ void update_cel(t_map *map)
 
 	c = 0;
 	l = 0;
-
 	cel = map->first_cel;
 	while (map->map[l])
 	{
 		next_line = cel->down;
 		while(map->map[l][c] != '\n')
 		{
-			//printf("%c", map->map[l][c]);
 			cel->state = map->map[l][c];
 			set_cel_image(map, cel);
 			cel = cel->right;
 			c++;
 		}
-		//printf("\n");
 		l++;
 		c = 0;
 		cel = next_line;
@@ -203,7 +196,6 @@ void	create_first_line(t_map *map)
 	map->first_cel = cel;
 
 	x = map->len_line - 1;
-	//printf("x = %d\n", x);
 
 	while (x)
 	{

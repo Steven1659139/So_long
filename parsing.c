@@ -106,6 +106,7 @@ void check_map(char **tab, t_map *map)
 
 
 	}
+	map->col_on_map = map->nb_collect;
 
 
 

@@ -2,7 +2,50 @@
 
 void move_right(t_map *map)
 {
-	map->player.pos_x++;
-	put_image(map, map->floor, map->player.pos_x, map->player.pos_y);
-	put_image(map, map->player.player, map->player.pos_x, map->player.pos_y);
+	if (!is_wall(map, 30, 0))
+	{
+
+		put_image(map, map->floor, map->player.pos.x, map->player.pos.y);
+		map->player.pos.x += 30;
+		put_image(map, map->player.player, map->player.pos.x, map->player.pos.y);
+		if (is_collect(map))
+			update_collect(map, map->player.pos);
+	}
+}
+
+void move_left(t_map *map)
+{
+	if (!is_wall(map, -30, 0))
+	{
+		put_image(map, map->floor, map->player.pos.x, map->player.pos.y);
+		map->player.pos.x -= 30;
+		put_image(map, map->player.player, map->player.pos.x, map->player.pos.y);
+		if (is_collect(map))
+			update_collect(map, map->player.pos);
+	}
+}
+
+void move_down(t_map *map)
+{
+	if (!is_wall(map, 0, 30))
+	{
+		put_image(map, map->floor, map->player.pos.x, map->player.pos.y);
+		map->player.pos.y += 30;
+		put_image(map, map->player.player, map->player.pos.x, map->player.pos.y);
+		if (is_collect(map))
+			update_collect(map, map->player.pos);
+	}
+}
+
+void move_up(t_map *map)
+{
+	
+	if (!is_wall(map, 0, -30))
+	{
+		put_image(map, map->floor, map->player.pos.x, map->player.pos.y);
+		map->player.pos.y -= 30;
+		put_image(map, map->player.player, map->player.pos.x, map->player.pos.y);
+		if (is_collect(map))
+			update_collect(map, map->player.pos);
+	}
 }

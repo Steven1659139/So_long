@@ -34,13 +34,23 @@ void	set_image(t_map *map, void *mlx)
 void	set_cel_image(t_map *map, t_case *cel)
 {
 	if (cel->state == '1')
+	{
 		cel->image = map->wall;
+		map->nb_wall++;
+		printf("nb_wall = %d\n", map->nb_wall);
+	}
 	else if (cel->state == '0')
 		cel->image = map->floor;
 	else if (cel->state == 'C')
 		cel->image = map->collectible;
 	else if (cel->state == 'P')
+	{
 		cel->image = map->player.player;
+		map->player.pos = cel->pos;
+	}
+		
 	else if (cel->state == 'E')
 		cel->image = map->exit;
 }
+
+

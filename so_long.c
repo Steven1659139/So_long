@@ -128,11 +128,13 @@ int main(int argc, char **argv)
 
 		map->mlx = mlx_init();
 		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, map->win_size_y, "So_long");
-
+		map->nb_wall = 0;
 		set_image(map, map->mlx);
 		printf("len_line = %zu\nnb_line = %d\n", map->len_line, map->nb_line);
 		set_case(map);
 		print_map(map);
+		set_wall(map);
+		set_collectible(map);
 		mlx_key_hook(map->mlx_win, keycode_event, map);
 
 		mlx_loop(map->mlx);

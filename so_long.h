@@ -18,10 +18,15 @@ typedef struct s_image
 	char	*path;
 }				t_image;
 
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}			t_pos;
+
 typedef struct s_player
 {
-	int	pos_x;
-	int	pos_y;
+	t_pos	pos;
 	t_image player;
 }			t_player;
 
@@ -32,8 +37,7 @@ typedef struct s_case
 	struct 	s_case	*up;
 	struct 	s_case	*down;
 	char	state;
-	int		x;
-	int		y;
+	t_pos	pos;
 	t_image	image;
 }			t_case;
 
@@ -42,8 +46,12 @@ typedef struct s_map
 	int	nb_exit;
 	int nb_player;
 	int nb_collect;
+	int	col_on_map;
+	t_pos	*pos_wall;
+	t_pos	*pos_collect;
 	size_t len_line;
 	int	nb_line;
+	int	nb_wall;
 	int	win_size_x;
 	int	win_size_y;
 	char	**map;
@@ -95,11 +103,21 @@ void print_map(t_map *map);
 
 int	print_keycode(int keycode);
 int keycode_event(int keycode, t_map *map);
-void move_right(t_map *map);
 void	add_cel(t_case *cel);
 void	create_first_line(t_map *map);
 t_case	*create_mid_line(t_case *prev_line);
 void	set_case(t_map	*map);
 void	set_cel_image(t_map *map, t_case *cel);
+
+void move_right(t_map *map);
+void move_up(t_map *map);
+void move_down(t_map *map);
+void move_left(t_map *map);
+
+void	set_wall(t_map *map);
+int	is_wall(t_map *map, int x, int y);
+int	is_collect(t_map *map);
+void	update_collect(t_map *map, t_pos pos);
+void	set_collectible(t_map *map);
 
 #endif

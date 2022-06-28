@@ -18,6 +18,13 @@ int keycode_event(int keycode, t_map *map)
 	}
 	if (keycode == 2)
 		move_right(map);
+	if (keycode == 0)
+		move_left(map);
+	if (keycode == 13)
+		move_up(map);
+	if (keycode == 1)
+		move_down(map);	
+
 	
 
 	
