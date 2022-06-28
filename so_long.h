@@ -47,6 +47,7 @@ typedef struct s_map
 	int nb_player;
 	int nb_collect;
 	int	col_on_map;
+	int	nb_move;
 	t_pos	*pos_wall;
 	t_pos	*pos_collect;
 	size_t len_line;

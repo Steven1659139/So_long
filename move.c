@@ -10,6 +10,9 @@ void move_right(t_map *map)
 		put_image(map, map->player.player, map->player.pos.x, map->player.pos.y);
 		if (is_collect(map))
 			update_collect(map, map->player.pos);
+
+		map->nb_move++;
+		printf("Nombre de mouvements = %d\n", map->nb_move);
 	}
 }
 
@@ -22,6 +25,9 @@ void move_left(t_map *map)
 		put_image(map, map->player.player, map->player.pos.x, map->player.pos.y);
 		if (is_collect(map))
 			update_collect(map, map->player.pos);
+
+		map->nb_move++;
+		printf("Nombre de mouvements = %d\n", map->nb_move);
 	}
 }
 
@@ -34,6 +40,8 @@ void move_down(t_map *map)
 		put_image(map, map->player.player, map->player.pos.x, map->player.pos.y);
 		if (is_collect(map))
 			update_collect(map, map->player.pos);
+		map->nb_move++;
+		printf("Nombre de mouvements = %d\n", map->nb_move);
 	}
 }
 
@@ -47,5 +55,8 @@ void move_up(t_map *map)
 		put_image(map, map->player.player, map->player.pos.x, map->player.pos.y);
 		if (is_collect(map))
 			update_collect(map, map->player.pos);
+
+		map->nb_move++;
+		printf("Nombre de mouvements = %d\n", map->nb_move);
 	}
 }
