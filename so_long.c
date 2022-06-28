@@ -132,6 +132,7 @@ int main(int argc, char **argv)
 		set_image(map, map->mlx);
 		print_map(map);
 
+		set_case(map);
 		mlx_key_hook(map->mlx_win, keycode_event, map);
 
 		mlx_loop(map->mlx);

@@ -27,10 +27,10 @@ typedef struct s_player
 
 typedef struct s_case
 {
-	t_case	*right;
-	t_case	*left;
-	t_case	*up;
-	t_case	*down;
+	struct	s_case	*right;
+	struct 	s_case	*left;
+	struct 	s_case	*up;
+	struct 	s_case	*down;
 	char	state;
 	t_image	block;
 }			t_case;
@@ -94,5 +94,9 @@ void print_map(t_map *map);
 int	print_keycode(int keycode);
 int keycode_event(int keycode, t_map *map);
 void move_right(t_map *map);
+void	add_cel(t_case *cel);
+void	create_first_line(t_map *map);
+t_case	*create_mid_line(t_case *prev_line);
+void	set_case(t_map	*map);
 
 #endif
