@@ -69,11 +69,10 @@ int	check_line(char *line, t_map *map)
 void check_map(char **tab, t_map *map)
 {
 	int	i;
-	int tab_len;
 
 	i = 0;
-	tab_len = tab_length(tab);
 	map->len_line = ft_strlen(tab[i]);
+	map->nb_line = tab_length(tab);
 
 	//printf("tab_len = %d\n", tab_len);
 
@@ -85,7 +84,7 @@ void check_map(char **tab, t_map *map)
 
 
 	}
-	while (i < (tab_len - 1))
+	while (i < (map->nb_line - 1))
 	{
 		//printf("i = %d\n", i);
 		if (!check_line(tab[i++], map))
