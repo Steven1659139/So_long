@@ -33,10 +33,15 @@ int keycode_event(int keycode, t_map *map)
 	
 }
 
-void	quit()
+int	quit(t_map *map)
 {
-	exit(0);
+	if (map)
+	{
+		mlx_destroy_window(map->mlx, map->mlx_win);
+		exit(0);
+	}
 
+	return (0);
 
 
 

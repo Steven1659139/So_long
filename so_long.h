@@ -123,5 +123,6 @@ void	update_collect(t_map *map, t_pos pos);
 void	set_collectible(t_map *map);
 int	is_exit(t_map *map, int	x, int y);
 void	set_exit(t_map *map);
+int	quit(t_map *map);
 
 #endif
