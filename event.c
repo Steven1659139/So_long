@@ -9,7 +9,7 @@ int	print_keycode(int keycode)
 
 int keycode_event(int keycode, t_map *map)
 {
-	printf("%d\n", keycode);
+	//printf("%d\n", keycode);
 
 	if (keycode == 53)
 	{

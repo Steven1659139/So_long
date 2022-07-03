@@ -12,7 +12,7 @@ void move_right(t_map *map)
 			update_collect(map, map->player.pos);
 
 		map->nb_move++;
-		printf("Nombre de mouvements = %d\n", map->nb_move);
+		printf("\033[2ANombre de mouvements = %d\n\033[2B", map->nb_move);
 	}
 }
 
@@ -27,7 +27,7 @@ void move_left(t_map *map)
 			update_collect(map, map->player.pos);
 
 		map->nb_move++;
-		printf("Nombre de mouvements = %d\n", map->nb_move);
+		printf("\033[2ANombre de mouvements = %d\n\033[2B", map->nb_move);
 	}
 }
 
@@ -41,7 +41,7 @@ void move_down(t_map *map)
 		if (is_collect(map))
 			update_collect(map, map->player.pos);
 		map->nb_move++;
-		printf("Nombre de mouvements = %d\n", map->nb_move);
+		printf("\033[2ANombre de mouvements = %d\n\033[2B", map->nb_move);
 	}
 }
 
@@ -57,6 +57,6 @@ void move_up(t_map *map)
 			update_collect(map, map->player.pos);
 
 		map->nb_move++;
-		printf("Nombre de mouvements = %d\n", map->nb_move);
+		printf("\033[2ANombre de mouvements = %d\n\033[2B", map->nb_move);
 	}
 }
