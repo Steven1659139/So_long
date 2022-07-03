@@ -155,10 +155,8 @@ int	is_collect(t_map *map)
 
 void	update_collect(t_map *map, t_pos pos)
 {
-	t_case	*cel;
 	int		i;
 
-	cel = map->first_cel;
 	i = 0;
 
 	while(i < map->nb_collect)
