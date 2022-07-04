@@ -64,11 +64,11 @@ void	print_map(t_map *map)
 			cel->pos.y = y;
 			if (cel->state == 'P')
 				map->player.pos = cel->pos;
-			printf("%c", cel->state);
+			//printf("%c", cel->state);
 			cel = cel->right;
 			x += 30;
 		}
-		printf("\n");
+		//printf("\n");
 		x = 0;
 		y += 30;
 		cel = next_line;

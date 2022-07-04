@@ -86,11 +86,12 @@ void check_map(char **tab, t_map *map)
 
 	if (map->nb_collect < 1)
 		yo_its_wrong("Il doit y avoir des collectibles.");
-	printf("nb_joueur = %d\n", map->nb_player);
+	//printf("nb_joueur = %d\n", map->nb_player);
 	if (map->nb_player < 1 || map->nb_player > 1)
 		yo_its_wrong("Il doit y avoir exactement 1 joueur.");
 	if (map->nb_exit < 1)
 		yo_its_wrong("Il doit y avoir une sortie.");
 	map->col_on_map = map->nb_collect;
 	map->nb_move = 0;
+	printf("\n\n");
 }

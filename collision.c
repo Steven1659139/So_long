@@ -56,7 +56,7 @@ void	set_collectible(t_map *map)
 
 	while(i < map->nb_collect)
 	{
-		printf("%d- x,y = %d,%d\n", i, map->pos_collect[i].x, map->pos_collect[i].y);
+		//printf("%d- x,y = %d,%d\n", i, map->pos_collect[i].x, map->pos_collect[i].y);
 		i++;
 
 
@@ -81,7 +81,7 @@ void	set_exit(t_map *map)
 		next_line = cel->down;
 		while(cel->right)
 		{
-			if (cel->state == 'C')
+			if (cel->state == 'E')
 			{
 				map->pos_exit[i] = cel->pos;
 				i++;
@@ -94,7 +94,7 @@ void	set_exit(t_map *map)
 
 	while(i < map->nb_exit)
 	{
-		printf("%d- exit x,y = %d,%d\n", i, map->pos_exit[i].x, map->pos_exit[i].y);
+		//printf("%d- exit x,y = %d,%d\n", i, map->pos_exit[i].x, map->pos_exit[i].y);
 		i++;
 
 
@@ -166,7 +166,7 @@ void	update_collect(t_map *map, t_pos pos)
 			map->pos_collect[i].x = -1;
 			map->pos_collect[i].y = -1;
 			map->col_on_map -= 1;
-			printf("%d restants sur %d\n", map->col_on_map, map->nb_collect);
+			printf("\033[1A%d restants sur %d\n\033[1B", map->col_on_map, map->nb_collect);
 			return ;
 		}
 		i++;

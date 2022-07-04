@@ -37,7 +37,7 @@ void	set_cel_image(t_map *map, t_case *cel)
 	{
 		cel->image = map->wall;
 		map->nb_wall++;
-		printf("nb_wall = %d\n", map->nb_wall);
+		//printf("nb_wall = %d\n", map->nb_wall);
 	}
 	else if (cel->state == '0')
 		cel->image = map->floor;
