@@ -19,6 +19,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
+	@$(MAKE) -C ./MinilibX
 	gcc $(CFLAGS) $(OBJS) ./Libft/libft.a MinilibX/libmlx.a $(MLXFLAGS) -o $(NAME)
 
 clean:
