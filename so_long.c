@@ -29,14 +29,15 @@ char	**tab_trunc(char **tab, char *str)
 
 	i = 0;
 	new_tab = NULL;
-	if (!tab)
+	if (!tab || !str)
 		return (0);
 	while (ft_strncmp(tab[i], str, ft_strlen(tab[i])) != 0)
 	{
 		new_tab = tab_join(new_tab, tab[i]);
 		i++;
 	}
-	new_tab[i] = NULL;
+	if (new_tab)
+		new_tab[i] = NULL;
 	table_flip(tab);
 	return (new_tab);
 }
@@ -76,14 +77,11 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (ft_strncmp(ft_strchr(argv[1], '.'), ".ber", ft_strlen(argv[1])))
-			yo_its_wrong("Le fichier doit être de type .ber");
+			yo_its_wrong("Le fichier doit être de type .ber\n");
 		map->map = set_map(argv[1]);
 		check_map(map->map, map);
 		map->win_size_x = (ft_strlen(map->map[0]) * 30) - 30;
 		map->win_size_y = (tab_length(map->map) * 30);
-		map->mlx = mlx_init();
-		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, \
-		map->win_size_y, "So_long");
 		map->nb_wall = 0;
 		set_image(map, map->mlx);
 		set_case(map);
@@ -91,6 +89,9 @@ int	main(int argc, char **argv)
 		set_wall(map);
 		set_collectible(map);
 		set_exit(map);
+		map->mlx = mlx_init();
+		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, \
+		map->win_size_y, "So_long");
 		mlx_key_hook(map->mlx_win, keycode_event, map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);
 		mlx_loop(map->mlx);
