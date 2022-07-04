@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/04 15:51:24 by slavoie           #+#    #+#             */
+/*   Updated: 2022/07/04 15:51:25 by slavoie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	print_map(t_map *map)
@@ -25,32 +37,6 @@ void	print_map(t_map *map)
 		}
 		x = 0;
 		y += 30;
-		cel = next_line;
-	}
-}
-
-void	update_cel(t_map *map)
-{
-	t_case	*cel;
-	t_case	*next_line;
-	int		l;
-	int		c;
-
-	c = 0;
-	l = 0;
-	cel = map->first_cel;
-	while (map->map[l])
-	{
-		next_line = cel->down;
-		while (map->map[l][c] != '\n')
-		{
-			cel->state = map->map[l][c];
-			set_cel_image(map, cel);
-			cel = cel->right;
-			c++;
-		}
-		l++;
-		c = 0;
 		cel = next_line;
 	}
 }
@@ -118,11 +104,28 @@ t_case	*create_mid_line(t_case *prev_line)
 	return (temp);
 }
 
-void	add_cel(t_case *cel)
+char	**set_map(char *argv)
 {
-	t_case	*new_cel;
+	int		map;
+	char	**tab;
+	char	*line;
+	int		i;
 
-	new_cel = malloc(sizeof(t_case));
-	cel->right = new_cel;
-	new_cel->left = cel;
+	map = open(argv, O_RDONLY, 0777);
+	if (map == -1)
+		yo_its_wrong("Erreur lors de la lecture du fichier.");
+	i = 0;
+	tab = NULL;
+	line = get_next_line(map);
+	tab = tab_join(tab, line);
+	while (line)
+	{
+		line = get_next_line(map);
+		tab = tab_join(tab, line);
+		if (!ft_strchr(tab[i], '\n'))
+			tab[i] = ft_strjoin(tab[i], "\n");
+		i++;
+	}
+	tab = tab_trunc(tab, "\n");
+	return (tab);
 }

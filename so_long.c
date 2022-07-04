@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/04 14:46:52 by slavoie           #+#    #+#             */
+/*   Updated: 2022/07/04 14:46:55 by slavoie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	tab_length(char **tab)
@@ -54,39 +66,6 @@ char	**tab_join(char **tab, char *line)
 	new_tab[i] = 0;
 	table_flip(tab);
 	return (new_tab);
-}
-
-char	**set_map(char *argv)
-{
-	int		map;
-	char	**tab;
-	char	*line;
-	int		i;
-
-	map = open(argv, O_RDONLY, 0777);
-	if (map == -1)
-		yo_its_wrong("Erreur lors de la lecture du fichier.");
-	i = 0;
-	tab = NULL;
-	line = get_next_line(map);
-	tab = tab_join(tab, line);
-	while (line)
-	{
-		line = get_next_line(map);
-		tab = tab_join(tab, line);
-		if (!ft_strchr(tab[i], '\n'))
-			tab[i] = ft_strjoin(tab[i], "\n");
-		i++;
-	}
-	tab = tab_trunc(tab, "\n");
-	return (tab);
-}
-
-int	boom(t_map *map, int keycode)
-{
-	if (keycode == 53)
-		mlx_destroy_window(map->mlx, map->mlx_win);
-	return (0);
 }
 
 int	main(int argc, char **argv)
