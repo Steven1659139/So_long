@@ -36,11 +36,15 @@ add:
 	git add *.c *.h Makefile *.xpm *.ber
 	git status
 
-sub:
+update:
 	git submodule update --init --recursive
+	./clone_branch.sh
+	git fetch
+	git pull
 
 stat: add
 	git branch
+
 
 com: stat
 		git commit -m $(COMMIT)
