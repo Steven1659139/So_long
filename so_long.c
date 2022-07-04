@@ -102,7 +102,10 @@ int boom(t_map *map, int keycode)
 	if (keycode == 53)
 		mlx_destroy_window(map->mlx, map->mlx_win);
 	return (0);
+
+
 }
+
 
 int main(int argc, char **argv)
 {

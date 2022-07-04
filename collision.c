@@ -108,18 +108,14 @@ int	is_exit(t_map *map, int	x, int y)
 	int	i;
 
 	i = 0;
-	if (map->col_on_map == 0)
+	while (i < map->nb_exit)
 	{
+		if ((map->player.pos.x + x == map->pos_exit[i].x && map->player.pos.y + y == map->pos_exit[i].y) && map->col_on_map == 0)
+			exit(0);
 
-		while (i < map->nb_exit)
-		{
-			if (map->player.pos.x + x == map->pos_exit[i].x && map->player.pos.y + y == map->pos_exit[i].y)
-			{
-				exit(0);
-				return (1);
-			}
-			i++;
-		}
+		if (map->player.pos.x + x == map->pos_exit[i].x && map->player.pos.y + y == map->pos_exit[i].y)
+			return (1);
+		i++;
 	}
 	return (0);
 }
