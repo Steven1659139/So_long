@@ -118,5 +118,5 @@ void	set_exit(t_map *map);
 int		quit(t_map *map);
 char	**set_map(char *argv);
 void	update_cel(t_map *map);
-
+void	init_map(t_map *map, char **argv);
 #endif

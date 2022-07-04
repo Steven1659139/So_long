@@ -57,7 +57,7 @@ int	check_line(char *line, t_map *map)
 		line++;
 	}
 	line--;
-	if (*line != 1 || *line != '\n')
+	if (*line != '1')
 		return (0);
 	return (1);
 }
@@ -68,10 +68,9 @@ void	check_map(char **tab, t_map *map)
 
 	if (!tab)
 		yo_its_wrong("Le fichier est vide.\n");
+	map->len_line = ft_strlen(map->map[0]);
+	map->nb_line = tab_length(map->map);
 	i = 0;
-	map->nb_player = 0;
-	map->len_line = ft_strlen(tab[i]);
-	map->nb_line = tab_length(tab);
 	if (!check_edge(tab[i++], map))
 		yo_its_wrong("Le haut de la carte n'est pas fermée.\n");
 	while (i < (map->nb_line - 1))
@@ -88,6 +87,5 @@ void	check_map(char **tab, t_map *map)
 	if (map->nb_exit < 1)
 		yo_its_wrong("Il doit y avoir une sortie.\n");
 	map->col_on_map = map->nb_collect;
-	map->nb_move = 0;
-	printf("\n\n");
+
 }
