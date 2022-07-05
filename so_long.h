@@ -116,8 +116,10 @@ void	set_collectible(t_map *map);
 int		is_exit(t_map *map, int x, int y);
 void	set_exit(t_map *map);
 int		quit(t_map *map);
-char	**set_map(t_map *map, char *argv);
+void	set_map(t_map *map, char *argv);
 void	update_cel(t_map *map);
-void	init_map(t_map *map, char **argv);
+void	init_map(t_map *map);
 void	clean_error(t_map *map, char *str);
+void	free_map(t_map *map);
+void	image_destroyer(t_map *map);
 #endif

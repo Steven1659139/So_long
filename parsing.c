@@ -86,6 +86,6 @@ void	check_map(t_map *map)
 		clean_error(map, "Il doit y avoir exactement 1 joueur.\n");
 	if (map->nb_exit < 1)
 		clean_error(map, "Il doit y avoir une sortie.\n");
-	map->col_on_map = map->nb_collect;
+	
 
 }

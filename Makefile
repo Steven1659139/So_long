@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = so_long.c parsing.c image.c map.c event.c move.c collision.c cel.c what_it_is.c
+SRCS = so_long.c parsing.c image.c map.c event.c move.c collision.c cel.c what_it_is.c quit.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -58,3 +58,6 @@ merge:
 	git merge $(BRANCH)
 go:
 	git checkout $(BRANCH)
+
+test:
+	./test_so_long/tester_so_long.sh

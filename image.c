@@ -31,22 +31,22 @@ void	image_part1(t_map *map, void *mlx)
 	map->player.player.img = \
 	mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->exit.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
-	map->floor.adresse = mlx_get_data_addr(map->floor.img, \
-	&map->floor.bits_per_pixel, &map->floor.line_length, &map->floor.endian);
-	map->wall.adresse = mlx_get_data_addr(map->wall.img, \
-	&map->wall.bits_per_pixel, &map->wall.line_length, &map->wall.endian);
-	map->exit.adresse = mlx_get_data_addr(map->exit.img, \
-	&map->exit.bits_per_pixel, &map->exit.line_length, &map->exit.endian);
-	map->collectible.adresse = mlx_get_data_addr(map->collectible.img, \
-	&map->collectible.bits_per_pixel, &map->collectible.line_length, \
-	&map->collectible.endian);
+	// map->floor.adresse = mlx_get_data_addr(map->floor.img, \
+	// &map->floor.bits_per_pixel, &map->floor.line_length, &map->floor.endian);
+	// map->wall.adresse = mlx_get_data_addr(map->wall.img, \
+	// &map->wall.bits_per_pixel, &map->wall.line_length, &map->wall.endian);
+	// map->exit.adresse = mlx_get_data_addr(map->exit.img, \
+	// &map->exit.bits_per_pixel, &map->exit.line_length, &map->exit.endian);
+	// map->collectible.adresse = mlx_get_data_addr(map->collectible.img, \
+	// &map->collectible.bits_per_pixel, &map->collectible.line_length, \
+	// &map->collectible.endian);
 }
 
 void	image_part2(t_map *map, void *mlx)
 {
-	map->player.player.adresse = mlx_get_data_addr(map->player.player.img, \
-	&map->player.player.bits_per_pixel, \
-	&map->player.player.line_length, &map->player.player.endian);
+	// map->player.player.adresse = mlx_get_data_addr(map->player.player.img, \
+	// &map->player.player.bits_per_pixel, \
+	// &map->player.player.line_length, &map->player.player.endian);
 	map->floor.img = mlx_xpm_file_to_image(mlx, \
 	map->floor.path, &map->floor.width, &map->floor.height);
 	map->wall.img = mlx_xpm_file_to_image(mlx, map->wall.path, \

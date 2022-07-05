@@ -104,10 +104,10 @@ t_case	*create_mid_line(t_case *prev_line)
 	return (temp);
 }
 
-char	**set_map(t_map *map, char *argv)
+void	set_map(t_map *map, char *argv)
 {
 	int		fd;
-	char	**tab;
+
 	char	*line;
 	int		i;
 
@@ -115,17 +115,21 @@ char	**set_map(t_map *map, char *argv)
 	if (fd == -1)
 		clean_error(map, "Erreur lors de la lecture du fichier.\n");
 	i = 0;
-	tab = NULL;
+	map->map = NULL;
 	line = get_next_line(fd);
-	tab = tab_join(tab, line);
+	map->map = tab_join(map->map, line);
+	// printf("%s",map->map[i]);
 	while (line)
 	{
+		free(line);
 		line = get_next_line(fd);
-		tab = tab_join(tab, line);
-		if (!ft_strchr(tab[i], '\n'))
-			tab[i] = ft_strjoin(tab[i], "\n");
+		map->map = tab_join(map->map, line);
+		if (!ft_strchr(map->map[i], '\n'))
+			map->map[i] = ft_strjoin(map->map[i], "\n");
 		i++;
+		// printf("%s",map->map[i]);
 	}
-	tab = tab_trunc(tab, "\n");
-	return (tab);
+	free(line);
+	close(fd);
+	map->map = tab_trunc(map->map, "\n");
 }

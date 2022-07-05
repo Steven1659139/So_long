@@ -12,19 +12,7 @@
 
 #include "so_long.h"
 
-void	clean_error(t_map *map, char *str)
-{
-	if (map->map)
-		table_flip(map->map);
-	free(map);
-	yo_its_wrong(str);
 
-
-
-
-
-
-}
 
 int	tab_length(char **tab)
 {
@@ -50,6 +38,7 @@ char	**tab_trunc(char **tab, char *str)
 		new_tab = tab_join(new_tab, tab[i]);
 		i++;
 	}
+	
 	if (new_tab)
 		new_tab[i] = NULL;
 	table_flip(tab);
@@ -83,24 +72,21 @@ char	**tab_join(char **tab, char *line)
 	return (new_tab);
 }
 
-void	init_map(t_map *map, char **argv)
+void	init_map(t_map *map)
 {
 	map->nb_wall = 0;
 	map->nb_move = 0;
 	map->nb_player = 0;
-	map->map = set_map(map, argv[1]);
-	check_map(map);
-	map->win_size_x = (ft_strlen(map->map[0]) * 30) - 30;
-	map->win_size_y = (tab_length(map->map) * 30);
-	map->mlx = mlx_init();
-	map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, \
-	map->win_size_y, "So_long");
-	set_image(map, map->mlx);
-	set_case(map);
-	print_map(map);
-	set_wall(map);
-	set_collectible(map);
-	set_exit(map);
+	map->nb_collect = 0;
+	map->pos_collect = NULL;
+	map->pos_exit = NULL;
+	map->pos_wall = NULL;
+	map->first_cel = NULL;
+	map->mlx = NULL;
+	map->mlx_win = NULL;
+	map->player_cel = NULL;
+
+
 }
 
 int	main(int argc, char **argv)
@@ -108,12 +94,28 @@ int	main(int argc, char **argv)
 	t_map	*map;
 
 	map = malloc(sizeof (t_map));
+	map->map = NULL;
+	init_map(map);
 	if (argc == 2)
 	{
 		if (ft_strncmp(ft_strchr(argv[1], '.'), ".ber", ft_strlen(argv[1])))
 			clean_error(map, "Le fichier doit être de type .ber\n");
-		printf("\n\n");
-		init_map(map, argv);
+		//printf("\n\n");
+		set_map(map, argv[1]);
+		check_map(map);
+		map->col_on_map = map->nb_collect;
+		map->win_size_x = (ft_strlen(map->map[0]) * 30) - 30;
+		map->win_size_y = (tab_length(map->map) * 30);
+		map->mlx = mlx_init();
+		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, \
+		map->win_size_y, "So_long");
+		set_image(map, map->mlx);
+		set_case(map);
+		print_map(map);
+		set_wall(map);
+		set_collectible(map);
+		set_exit(map);
+		mlx_string_put(map->mlx, map->mlx_win, 0, 0, 0XFF0022, "Allo");
 		mlx_key_hook(map->mlx_win, keycode_event, map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);
 		mlx_loop(map->mlx);
