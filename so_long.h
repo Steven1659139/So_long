@@ -86,7 +86,7 @@ void	my_mlx_pixel_put(t_image *img, int x, int y, int color);
 void	print_tab(char **tab);
 int		check_edge(char *line, t_map *map);
 int		check_line(char *line, t_map *map);
-void	check_map(char **tab, t_map *map);
+void	check_map(t_map *map);
 char	**map(char *argv);
 int		tab_length(char **tab);
 char	**tab_join(char **tab, char *line);
@@ -116,7 +116,8 @@ void	set_collectible(t_map *map);
 int		is_exit(t_map *map, int x, int y);
 void	set_exit(t_map *map);
 int		quit(t_map *map);
-char	**set_map(char *argv);
+char	**set_map(t_map *map, char *argv);
 void	update_cel(t_map *map);
 void	init_map(t_map *map, char **argv);
+void	clean_error(t_map *map, char *str);
 #endif

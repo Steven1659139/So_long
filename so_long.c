@@ -12,6 +12,20 @@
 
 #include "so_long.h"
 
+void	clean_error(t_map *map, char *str)
+{
+	if (map->map)
+		table_flip(map->map);
+	free(map);
+	yo_its_wrong(str);
+
+
+
+
+
+
+}
+
 int	tab_length(char **tab)
 {
 	int	i;
@@ -74,8 +88,8 @@ void	init_map(t_map *map, char **argv)
 	map->nb_wall = 0;
 	map->nb_move = 0;
 	map->nb_player = 0;
-	map->map = set_map(argv[1]);
-	check_map(map->map, map);
+	map->map = set_map(map, argv[1]);
+	check_map(map);
 	map->win_size_x = (ft_strlen(map->map[0]) * 30) - 30;
 	map->win_size_y = (tab_length(map->map) * 30);
 	map->mlx = mlx_init();
@@ -97,11 +111,12 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (ft_strncmp(ft_strchr(argv[1], '.'), ".ber", ft_strlen(argv[1])))
-			yo_its_wrong("Le fichier doit être de type .ber\n");
+			clean_error(map, "Le fichier doit être de type .ber\n");
 		printf("\n\n");
 		init_map(map, argv);
 		mlx_key_hook(map->mlx_win, keycode_event, map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);
 		mlx_loop(map->mlx);
 	}
+	free(map);
 }

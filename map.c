@@ -104,23 +104,23 @@ t_case	*create_mid_line(t_case *prev_line)
 	return (temp);
 }
 
-char	**set_map(char *argv)
+char	**set_map(t_map *map, char *argv)
 {
-	int		map;
+	int		fd;
 	char	**tab;
 	char	*line;
 	int		i;
 
-	map = open(argv, O_RDONLY, 0777);
-	if (map == -1)
-		yo_its_wrong("Erreur lors de la lecture du fichier.");
+	fd = open(argv, O_RDONLY, 0777);
+	if (fd == -1)
+		clean_error(map, "Erreur lors de la lecture du fichier.\n");
 	i = 0;
 	tab = NULL;
-	line = get_next_line(map);
+	line = get_next_line(fd);
 	tab = tab_join(tab, line);
 	while (line)
 	{
-		line = get_next_line(map);
+		line = get_next_line(fd);
 		tab = tab_join(tab, line);
 		if (!ft_strchr(tab[i], '\n'))
 			tab[i] = ft_strjoin(tab[i], "\n");
