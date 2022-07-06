@@ -116,8 +116,9 @@ int	main(int argc, char **argv)
 		set_wall(map);
 		set_collectible(map);
 		set_exit(map);
-
-		mlx_key_hook(map->mlx_win, keycode_event, map);
+		mlx_hook(map->mlx_win, 2, 0, keycode_event, map);
+		// mlx_hook(map->mlx_win, 3, 0, print_frog_over_frog, map);
+		// mlx_key_hook(map->mlx_win, , map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);
 		mlx_loop(map->mlx);
 	}

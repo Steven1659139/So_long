@@ -81,6 +81,8 @@ void	print_move(t_map *map)
 	char	*str;
 
 	str = ft_itoa(map->nb_move);
-	mlx_string_put(map->mlx, map->mlx_win, 50, 10, 0XFF00FF, str);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->get_rekt.img, 0, 0);
+	mlx_string_put(map->mlx, map->mlx_win, 10, 20, 0XFF00FF, "Moves=");
+	mlx_string_put(map->mlx, map->mlx_win, 60, 20, 0XFF00FF, str);
 	free(str);
 }

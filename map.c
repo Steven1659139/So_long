@@ -39,7 +39,8 @@ void	print_map(t_map *map)
 		y += 70;
 		cel = next_line;
 	}
-	mlx_string_put(map->mlx, map->mlx_win, 10, 10, 0XFF0022, "Move=0");
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->get_rekt.img, 0, 0);
+	mlx_string_put(map->mlx, map->mlx_win, 10, 0, 0XFF0022, "Move=0");
 }
 
 void	set_case(t_map	*map)

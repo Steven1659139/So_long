@@ -40,6 +40,7 @@ typedef struct s_player
 {
 	t_pos	pos;
 	t_image	player;
+	t_image sprite_2;
 }			t_player;
 
 typedef struct s_case
@@ -76,6 +77,8 @@ typedef struct s_map
 	t_image		wall;
 	t_image		collectible;
 	t_image		exit;
+	t_image		get_rekt;
+
 	t_player	player;
 	t_case		*first_cel;
 	t_case		*player_cel;
@@ -123,4 +126,6 @@ void	clean_error(t_map *map, char *str);
 void	free_map(t_map *map);
 void	image_destroyer(t_map *map);
 void	print_move(t_map *map);
+int		print_frog_over_frog(t_map *map);
+
 #endif

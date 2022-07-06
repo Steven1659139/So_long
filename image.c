@@ -25,12 +25,19 @@ void	image_part1(t_map *map, void *mlx)
 	map->wall.path = "wall_70.xpm";
 	map->collectible.path = "flower_70.xpm";
 	map->player.player.path = "frog_2_70.xpm";
+	map->get_rekt.path = "get_rekt.xpm";
+	map->player.sprite_2.path = "frog_1.xpm";
+	
+
 	map->floor.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->wall.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->collectible.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->player.player.img = \
 	mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->exit.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+	
+	map->get_rekt.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+	map->player.sprite_2.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	// map->floor.adresse = mlx_get_data_addr(map->floor.img, \
 	// &map->floor.bits_per_pixel, &map->floor.line_length, &map->floor.endian);
 	// map->wall.adresse = mlx_get_data_addr(map->wall.img, \
@@ -58,6 +65,14 @@ void	image_part2(t_map *map, void *mlx)
 	map->player.player.img = mlx_xpm_file_to_image(mlx, \
 	map->player.player.path, &map->player.player.width, \
 	&map->player.player.height);
+
+	map->get_rekt.img = mlx_xpm_file_to_image(mlx, map->get_rekt.path, \
+	&map->get_rekt.width, &map->get_rekt.height);
+
+	map->player.sprite_2.img = mlx_xpm_file_to_image(mlx, \
+	map->player.sprite_2.path, &map->player.sprite_2.width, \
+	&map->player.sprite_2.height);
+
 }
 
 void	set_image(t_map *map, void *mlx)
@@ -84,4 +99,16 @@ void	set_cel_image(t_map *map, t_case *cel)
 	}
 	else if (cel->state == 'E')
 		cel->image = map->exit;
+}
+
+int	print_frog_over_frog(t_map *map)
+{
+	put_image(map, map->player.sprite_2, map->player.pos.x, map->player.pos.y);
+
+	return (0);
+
+
+
+
+
 }
