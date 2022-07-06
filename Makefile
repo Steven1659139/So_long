@@ -12,8 +12,8 @@ BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
 COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')
 ANSWER ?= $(shell bash -c 'read -p "Is OK ? " answer; echo $$answer')
 
-%.o: %.c
-	gcc $(CFLAGS) -Imlx -c $< -o $@
+# %.o: %.c
+# 	gcc $(CFLAGS) -Imlx -c $< -o $@
 
 all: $(NAME)
 

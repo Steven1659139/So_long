@@ -33,12 +33,13 @@ void	print_map(t_map *map)
 			if (cel->state == 'P')
 				map->player.pos = cel->pos;
 			cel = cel->right;
-			x += 30;
+			x += 70;
 		}
 		x = 0;
-		y += 30;
+		y += 70;
 		cel = next_line;
 	}
+	mlx_string_put(map->mlx, map->mlx_win, 10, 10, 0XFF0022, "Move=0");
 }
 
 void	set_case(t_map	*map)
@@ -110,6 +111,7 @@ void	set_map(t_map *map, char *argv)
 
 	char	*line;
 	int		i;
+	char	*temp;
 
 	fd = open(argv, O_RDONLY, 0777);
 	if (fd == -1)
@@ -125,9 +127,12 @@ void	set_map(t_map *map, char *argv)
 		line = get_next_line(fd);
 		map->map = tab_join(map->map, line);
 		if (!ft_strchr(map->map[i], '\n'))
+		{
+			temp = map->map[i];
 			map->map[i] = ft_strjoin(map->map[i], "\n");
+			free(temp);
+		}
 		i++;
-		// printf("%s",map->map[i]);
 	}
 	free(line);
 	close(fd);

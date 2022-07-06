@@ -33,7 +33,8 @@ char	**tab_trunc(char **tab, char *str)
 	new_tab = NULL;
 	if (!tab || !str)
 		return (0);
-	while (ft_strncmp(tab[i], str, ft_strlen(tab[i])) != 0)
+	
+	while (tab[i] && ft_strncmp(tab[i], str, ft_strlen(tab[i])) != 0)
 	{
 		new_tab = tab_join(new_tab, tab[i]);
 		i++;
@@ -104,8 +105,8 @@ int	main(int argc, char **argv)
 		set_map(map, argv[1]);
 		check_map(map);
 		map->col_on_map = map->nb_collect;
-		map->win_size_x = (ft_strlen(map->map[0]) * 30) - 30;
-		map->win_size_y = (tab_length(map->map) * 30);
+		map->win_size_x = (ft_strlen(map->map[0]) * 70) - 70;
+		map->win_size_y = (tab_length(map->map) * 70);
 		map->mlx = mlx_init();
 		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, \
 		map->win_size_y, "So_long");
@@ -115,7 +116,7 @@ int	main(int argc, char **argv)
 		set_wall(map);
 		set_collectible(map);
 		set_exit(map);
-		mlx_string_put(map->mlx, map->mlx_win, 0, 0, 0XFF0022, "Allo");
+
 		mlx_key_hook(map->mlx_win, keycode_event, map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);
 		mlx_loop(map->mlx);

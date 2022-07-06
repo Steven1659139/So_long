@@ -23,10 +23,11 @@ void	clean_error(t_map *map, char *str)
 
 		while (map->map[i])
 		{
-			printf("%d- %s", i, map->map[i]);
+			// printf("%d- %s", i, map->map[i]);
 			free(map->map[i++]);
 		}
-		printf("%d- %s", i, map->map[i]);
+		// printf("%d- %s", i, map->map[i]);
+		free(map->map[i]);
 		free(map->map);
 	}
 	

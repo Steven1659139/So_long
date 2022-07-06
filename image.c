@@ -20,11 +20,11 @@ void	put_image(t_map *map, t_image image, int x, int y)
 
 void	image_part1(t_map *map, void *mlx)
 {
-	map->floor.path = "TilesetFloor.xpm";
+	map->floor.path = "TilesetFloor_70.xpm";
 	map->exit.path = "exit.xpm";
-	map->wall.path = "wall.xpm";
-	map->collectible.path = "flower_1.xpm";
-	map->player.player.path = "frog_2.xpm";
+	map->wall.path = "wall_70.xpm";
+	map->collectible.path = "flower_70.xpm";
+	map->player.player.path = "frog_2_70.xpm";
 	map->floor.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->wall.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->collectible.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
