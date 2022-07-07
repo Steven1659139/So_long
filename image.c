@@ -22,9 +22,9 @@ void	image_part1(t_map *map, void *mlx)
 {
 	map->floor.path = "TilesetFloor_70.xpm";
 	map->exit.path = "exit.xpm";
-	map->wall.path = "wall_70.xpm";
+	map->wall.path = "wall.xpm";
 	map->collectible.path = "flower_70.xpm";
-	map->player.player.path = "frog_2_70.xpm";
+	map->player.player.path = "steven_face_couronne.xpm";
 	map->get_rekt.path = "get_rekt.xpm";
 	map->player.sprite_2.path = "frog_1.xpm";
 	

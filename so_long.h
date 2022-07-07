@@ -126,6 +126,6 @@ void	clean_error(t_map *map, char *str);
 void	free_map(t_map *map);
 void	image_destroyer(t_map *map);
 void	print_move(t_map *map);
-int		print_frog_over_frog(t_map *map);
+int			print_frog_over_frog(t_map *map);
 
 #endif
