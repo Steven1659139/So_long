@@ -105,8 +105,8 @@ int	main(int argc, char **argv)
 		set_map(map, argv[1]);
 		check_map(map);
 		map->col_on_map = map->nb_collect;
-		map->win_size_x = (ft_strlen(map->map[0]) * 70) - 70;
-		map->win_size_y = (tab_length(map->map) * 70);
+		map->win_size_x = (ft_strlen(map->map[0]) * 90) - 90;
+		map->win_size_y = (tab_length(map->map) * 90);
 		map->mlx = mlx_init();
 		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, \
 		map->win_size_y, "So_long");
@@ -116,6 +116,7 @@ int	main(int argc, char **argv)
 		set_wall(map);
 		set_collectible(map);
 		set_exit(map);
+		create_list_sprite(map);
 		mlx_hook(map->mlx_win, 2, 0, keycode_event, map);
 		// mlx_hook(map->mlx_win, 3, 0, print_frog_over_frog, map);
 		// mlx_key_hook(map->mlx_win, , map);

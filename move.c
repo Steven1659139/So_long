@@ -14,10 +14,10 @@
 
 void	move_right(t_map *map)
 {
-	if (!is_exit(map, 70, 0) && !is_wall(map, 70, 0))
+	if (!is_exit(map, 90, 0) && !is_wall(map, 90, 0))
 	{
-		put_image(map, map->floor, map->player.pos.x, map->player.pos.y);
-		map->player.pos.x += 70;
+		put_image(map, map->sprite.floor, map->player.pos.x, map->player.pos.y);
+		map->player.pos.x += 90;
 		put_image(map, map->player.player, \
 		map->player.pos.x, map->player.pos.y);
 		if (is_collect(map))
@@ -30,10 +30,10 @@ void	move_right(t_map *map)
 
 void	move_left(t_map *map)
 {
-	if (!is_exit(map, -70, 0) && !is_wall(map, -70, 0))
+	if (!is_exit(map, -90, 0) && !is_wall(map, -90, 0))
 	{
-		put_image(map, map->floor, map->player.pos.x, map->player.pos.y);
-		map->player.pos.x -= 70;
+		put_image(map, map->sprite.floor, map->player.pos.x, map->player.pos.y);
+		map->player.pos.x -= 90;
 		put_image(map, map->player.player, \
 		map->player.pos.x, map->player.pos.y);
 		if (is_collect(map))
@@ -46,11 +46,11 @@ void	move_left(t_map *map)
 
 void	move_down(t_map *map)
 {
-	if (!is_exit(map, 0, 70) && !is_wall(map, 0, 70))
+	if (!is_exit(map, 0, 90) && !is_wall(map, 0, 90))
 	{
-		put_image(map, map->floor, \
+		put_image(map, map->sprite.floor, \
 		map->player.pos.x, map->player.pos.y);
-		map->player.pos.y += 70;
+		map->player.pos.y += 90;
 		put_image(map, map->player.player, \
 		map->player.pos.x, map->player.pos.y);
 		if (is_collect(map))
@@ -63,10 +63,10 @@ void	move_down(t_map *map)
 
 void	move_up(t_map *map)
 {
-	if (!is_exit(map, 0, -70) && !is_wall(map, 0, -70))
+	if (!is_exit(map, 0, -90) && !is_wall(map, 0, -90))
 	{
-		put_image(map, map->floor, map->player.pos.x, map->player.pos.y);
-		map->player.pos.y -= 70;
+		put_image(map, map->sprite.floor, map->player.pos.x, map->player.pos.y);
+		map->player.pos.y -= 90;
 		put_image(map, map->player.player, \
 		map->player.pos.x, map->player.pos.y);
 		if (is_collect(map))
@@ -81,7 +81,7 @@ void	print_move(t_map *map)
 	char	*str;
 
 	str = ft_itoa(map->nb_move);
-	mlx_put_image_to_window(map->mlx, map->mlx_win, map->get_rekt.img, 0, 0);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->sprite.get_rekt.img, 0, 0);
 	mlx_string_put(map->mlx, map->mlx_win, 10, 20, 0XFF00FF, "Moves=");
 	mlx_string_put(map->mlx, map->mlx_win, 60, 20, 0XFF00FF, str);
 	free(str);

@@ -74,9 +74,9 @@ void	free_map(t_map *map)
 
 void	image_destroyer(t_map *map)
 {
-	mlx_destroy_image(map->mlx, &map->floor);
-	mlx_destroy_image(map->mlx, &map->player);
-	mlx_destroy_image(map->mlx, &map->collectible);
-	mlx_destroy_image(map->mlx, &map->wall);
+	mlx_destroy_image(map->mlx, &map->sprite.floor);
+	mlx_destroy_image(map->mlx, &map->sprite.p_sprite_1);
+	mlx_destroy_image(map->mlx, &map->sprite.collectible);
+	mlx_destroy_image(map->mlx, &map->sprite.wall);
 	mlx_destroy_window(map->mlx, map->mlx_win);
 }

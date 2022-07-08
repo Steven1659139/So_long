@@ -33,13 +33,13 @@ void	print_map(t_map *map)
 			if (cel->state == 'P')
 				map->player.pos = cel->pos;
 			cel = cel->right;
-			x += 70;
+			x += 90;
 		}
 		x = 0;
-		y += 70;
+		y += 90;
 		cel = next_line;
 	}
-	mlx_put_image_to_window(map->mlx, map->mlx_win, map->get_rekt.img, 0, 0);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->sprite.get_rekt.img, 0, 0);
 	mlx_string_put(map->mlx, map->mlx_win, 10, 0, 0XFF0022, "Move=0");
 }
 
