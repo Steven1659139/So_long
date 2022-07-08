@@ -43,6 +43,15 @@ typedef struct s_player
 	t_list	*sprite;
 }			t_player;
 
+typedef struct s_ouachcaca
+{
+	t_pos	pos;
+	t_list	*sprite_up;
+	t_list	*sprite_down;
+	t_list	*sprite_left;
+	t_list	*sprite_right;
+}			t_ouachcaca;
+
 typedef struct s_case
 {
 	struct s_case	*right;
@@ -61,10 +70,24 @@ typedef	struct s_sprite
 	t_image	collectible;
 	t_image	exit;
 	t_image	get_rekt;
+
 	t_image	p_sprite_1;
 	t_image	p_sprite_2;
 	t_image	p_sprite_3;
 	t_image	p_sprite_4;
+
+	t_image ouach_D1;
+	t_image ouach_D2;
+	t_image ouach_D3;
+
+	t_image	ouach_U1;
+	t_image	ouach_U2;
+
+	t_image	ouach_R1;
+	t_image	ouach_R2;
+
+	t_image	ouach_L1;
+	t_image	ouach_L2;
 }			t_sprite;
 
 typedef struct s_map
@@ -89,6 +112,7 @@ typedef struct s_map
 	t_image		ennemi;
 	t_sprite	sprite;
 	t_player	player;
+	t_ouachcaca	ouachcaca;
 	t_case		*first_cel;
 	t_case		*player_cel;
 
@@ -137,7 +161,7 @@ void	free_map(t_map *map);
 void	image_destroyer(t_map *map);
 void	print_move(t_map *map);
 int			print_frog_over_frog(t_map *map);
-void	create_list_sprite(t_map	*map);
+void	create_list_sprite(t_map *map);
 
-int	print_sprite(t_map	*map);
+int	print_player_sprite(t_map *map);
 #endif

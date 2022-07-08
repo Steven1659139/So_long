@@ -139,3 +139,30 @@ void	set_map(t_map *map, char *argv)
 	close(fd);
 	map->map = tab_trunc(map->map, "\n");
 }
+
+
+void	put_ennemi(t_map *map)
+{
+	t_case *cel;
+	t_case *next_line;
+
+
+	cel = map->first_cel->down;
+	while (cel->down)
+	{
+		next_line = cel->down;
+		while (cel->right)
+		{
+			if (cel->state == '0')
+				{
+					map->ouachcaca.pos = cel->pos;
+					break ;
+				}
+			cel = cel->right;
+		}
+		if (cel->state == '0')
+			break ;
+		cel = next_line;
+	}
+
+}

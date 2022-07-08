@@ -18,6 +18,53 @@ void	put_image(t_map *map, t_image image, int x, int y)
 	mlx_put_image_to_window(map->mlx, map->mlx_win, image.img, x, y);
 }
 
+void	init_ouachcaca_image(t_map *map)
+{
+	map->sprite.ouach_D1.path = "/sprite/ouachcaca/down/ouachcaca_down_1.xpm";
+	map->sprite.ouach_D2.path = "/sprite/ouachcaca/down/ouachcaca_down_2.xpm";
+	map->sprite.ouach_D3.path = "/sprite/ouachcaca/down/ouachcaca_down_3.xpm";
+
+	map->sprite.ouach_U1.path = "/sprite/ouachcaca/up/ouachcaca_up_1.xpm";
+	map->sprite.ouach_U2.path = "/sprite/ouachcaca/up/ouachcaca_up_2.xpm";
+
+	map->sprite.ouach_R1.path = "/sprite/ouachcaca/right/ouachcaca_droite_1.xpm";
+	map->sprite.ouach_R2.path = "/sprite/ouachcaca/right/ouachcaca_droite_1.xpm";
+
+	map->sprite.ouach_L1.path = "/sprite/ouachcaca/left/ouachcaca_gauche_1.xpm";
+	map->sprite.ouach_L2.path = "/sprite/ouachcaca/left/ouachcaca_gauche_1.xpm";
+
+	map->sprite.ouach_D1.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->sprite.ouach_D2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->sprite.ouach_D3.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+
+	map->sprite.ouach_U1.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->sprite.ouach_U2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+
+	map->sprite.ouach_R1.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->sprite.ouach_R2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+
+	map->sprite.ouach_L1.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->sprite.ouach_L2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+
+	map->sprite.ouach_D1.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_D1.path, &map->sprite.ouach_D1.width, &map->sprite.ouach_D1.height);
+	map->sprite.ouach_D2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_D2.path, &map->sprite.ouach_D2.width, &map->sprite.ouach_D2.height);
+	map->sprite.ouach_D3.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_D3.path, &map->sprite.ouach_D3.width, &map->sprite.ouach_D3.height);
+
+	map->sprite.ouach_U1.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_U1.path, &map->sprite.ouach_U1.width, &map->sprite.ouach_U1.height);
+	map->sprite.ouach_U2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_U2.path, &map->sprite.ouach_U2.width, &map->sprite.ouach_U2.height);
+
+	map->sprite.ouach_R1.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_R1.path, &map->sprite.ouach_R1.width, &map->sprite.ouach_R1.height);
+	map->sprite.ouach_R2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_R2.path, &map->sprite.ouach_R2.width, &map->sprite.ouach_R2.height);
+
+	map->sprite.ouach_L1.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_L1.path, &map->sprite.ouach_L1.width, &map->sprite.ouach_L1.height);
+	map->sprite.ouach_L2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_L2.path, &map->sprite.ouach_L2.width, &map->sprite.ouach_L2.height);
+
+
+}
+
+
+
+
 void	image_part1(t_map *map, void *mlx)
 {
 	map->sprite.floor.path = "sprite/floor.xpm";
@@ -132,7 +179,7 @@ void	set_cel_image(t_map *map, t_case *cel)
 
 // }
 
-int	print_sprite(t_map	*map)
+int	print_player_sprite(t_map *map)
 {
 
 	static int i = 10;

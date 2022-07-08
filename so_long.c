@@ -93,66 +93,6 @@ void	init_map(t_map *map)
 
 
 
-// int	render_next_frame(t_map *map)
-// {
-// 	int	i;
-// 	int x;
-// 	int y;
-// 	int	color[6];
-// 	static int	c;
-
-// 	color[0] = 0XFF0000;
-// 	color[1] = 0X0CFF00;
-// 	color[2] = 0XFFFB00;
-// 	color[3] = 0X002EFF;
-// 	color[4] = 0XFF00FB;
-// 	color[5] = 0X00FFF0;
-
-
-
-// 	i = 0;
-// 	x = 0;
-// 	y = 0;
-// 	c = 0;
-	
-
-
-// 	while (i < 1000)
-// 	{
-// 		mlx_pixel_put(map->mlx, map->mlx_win, x, y, color[c]);
-// 		x++;
-// 		y++;
-// 		i++;
-
-
-
-// 	} 
-// 	c++;
-
-
-	
-
-// 	return (0);
-
-
-
-
-// }
-
-// int	main(void)
-// {
-// 	t_map	*map;
-
-// 	map = malloc(sizeof(t_map));
-// 	map->mlx = mlx_init();
-// 	map->mlx_win = mlx_new_window(map->mlx, 1000, 1000, "so_long");
-// 	mlx_loop_hook(map->mlx, render_next_frame, map);
-// 	mlx_loop(map->mlx);
-// }
-
-
-
-
 
 
 
@@ -185,7 +125,7 @@ int	main(int argc, char **argv)
 		set_exit(map);
 		create_list_sprite(map);
 		mlx_hook(map->mlx_win, 2, 0, keycode_event, map);
-		mlx_loop_hook(map->mlx, print_sprite, map);
+		mlx_loop_hook(map->mlx, print_player_sprite, map);
 		// mlx_hook(map->mlx_win, 3, 0, print_frog_over_frog, map);
 		// mlx_key_hook(map->mlx_win, , map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);

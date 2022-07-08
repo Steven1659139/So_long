@@ -1,5 +1,17 @@
--ennemi
--afficher compteur
--sprite
+- afficher le ouachcaca
+- afficher le compteur au départ 
+- afficher les collectibles au compteur
+- ajouter le sprite ultime 
+- animer le sprite ultime 
+- gérer les déplacement du ouachcaca
+- mettre fin au jeu si le joueur entre en contact avec le ouachcaca
+- gérer les collisions du ouachcaca avec les murs et les collectibles
+- redessiner les sprites ultime
+- 
+
+
+
+
+- gérer les leaks
 
 
