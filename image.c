@@ -24,15 +24,14 @@ void	image_part1(t_map *map, void *mlx)
 	map->sprite.exit.path = "sprite/exit.xpm";
 	map->sprite.wall.path = "sprite/wall.xpm";
 	map->sprite.collectible.path = "sprite/flower_70.xpm";
-	map->player.player.path = "sprite/steven_1.xpm";
+	map->player.player.path = "sprite/player/steven_1.xpm";
 	map->sprite.get_rekt.path = "sprite/get_rekt.xpm";
-	map->sprite.p_sprite_1.path = "sprite/steven_1.xpm";
-	map->sprite.p_sprite_2.path = "sprite/steven_2.xpm";
-	map->sprite.p_sprite_3.path = "sprite/steven_3.xpm";
-	map->sprite.p_sprite_4.path = "sprite/steven_4.xpm";
+	map->sprite.p_sprite_1.path = "sprite/player/steven_1.xpm";
+	map->sprite.p_sprite_2.path = "sprite/player/steven_2.xpm";
+	map->sprite.p_sprite_3.path = "sprite/player/steven_3.xpm";
+	map->sprite.p_sprite_4.path = "sprite/player/steven_4.xpm";
 	// map->player.sprite_2.path = "frog_1.xpm";
 	
-
 	map->sprite.floor.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->sprite.wall.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->sprite.collectible.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
@@ -133,41 +132,43 @@ void	set_cel_image(t_map *map, t_case *cel)
 
 // }
 
-// int	print_sprite(t_map	*map)
-// {
-// 	while (1)
-// 	{
-// 		put_image(map->player, map->player.player.)
+int	print_sprite(t_map	*map)
+{
+
+	static int i = 10;
 
 
+	put_image(map, *(t_image *)map->player.sprite->content, map->player.pos.x, map->player.pos.y);
+	if (i-- <= 0)
+	{
+		map->player.sprite = map->player.sprite->next;
+		i = 10;
+	}
+	return (0);
+}
 
-
-
-
-
-// 	}
-
-
-
-
-// }
-
-t_list	*create_list_sprite(t_map	*map)
+void	create_list_sprite(t_map *map)
 {	
 	t_list	*list_sprite;
+	t_list	*last;
 
-	list_sprite = ft_lstnew(&map->sprite.wall);
+	list_sprite = ft_lstnew(&map->sprite.p_sprite_1);
+	
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_2));
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_3));
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_4));
 
-	put_image(map, *(t_image *)list_sprite->content, 10, 10);
+	last = ft_lstlast(list_sprite);
+	last->next = list_sprite;
+	map->player.sprite = list_sprite;
+	// map->player.sprite = list_sprite->next;
+	// map->player.sprite = list_sprite->next;
+	// map->player.sprite = list_sprite->next;
+	// map->player.sprite = list_sprite->next;
 
 
 
-
-	// ft_lstadd_back(NULL, ft_lstnew(map->sprite.p_sprite_1));
-	return (0);
-
-
-
+	// put_image(map, *(t_image *)map->player.sprite->next->next->next->next->content, 10, 10);
 
 
 

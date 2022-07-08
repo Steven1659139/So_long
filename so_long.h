@@ -137,6 +137,7 @@ void	free_map(t_map *map);
 void	image_destroyer(t_map *map);
 void	print_move(t_map *map);
 int			print_frog_over_frog(t_map *map);
-t_list	*create_list_sprite(t_map	*map);
+void	create_list_sprite(t_map	*map);
 
+int	print_sprite(t_map	*map);
 #endif
