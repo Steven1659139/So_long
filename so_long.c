@@ -123,7 +123,7 @@ int	main(int argc, char **argv)
 		set_wall(map);
 		set_collectible(map);
 		set_exit(map);
-		create_list_sprite(map);
+		print_ouachcaca(map);
 		mlx_hook(map->mlx_win, 2, 0, keycode_event, map);
 		mlx_loop_hook(map->mlx, print_player_sprite, map);
 		// mlx_hook(map->mlx_win, 3, 0, print_frog_over_frog, map);

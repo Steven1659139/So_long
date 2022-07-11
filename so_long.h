@@ -50,6 +50,10 @@ typedef struct s_ouachcaca
 	t_list	*sprite_down;
 	t_list	*sprite_left;
 	t_list	*sprite_right;
+	t_pos	down;
+	t_pos	right;
+	t_pos	up;
+	t_pos	left;
 }			t_ouachcaca;
 
 typedef struct s_case
@@ -164,4 +168,7 @@ int			print_frog_over_frog(t_map *map);
 void	create_list_sprite(t_map *map);
 
 int	print_player_sprite(t_map *map);
+void	print_ouachcaca(t_map *map);
+void	ouachcaca_sprite(t_map *map);
+void	init_ouachcaca_image(t_map *map);
 #endif

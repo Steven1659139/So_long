@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = so_long.c parsing.c image.c map.c event.c move.c collision.c cel.c what_it_is.c quit.c
+SRCS = so_long.c parsing.c image.c map.c event.c move.c collision.c cel.c what_it_is.c quit.c ouachcaca.c
 
 OBJS = $(SRCS:.c=.o)
 
