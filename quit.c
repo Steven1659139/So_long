@@ -53,11 +53,7 @@ void	free_map(t_map *map)
 	t_case	*cel;
 	t_case	*next_line;
 	t_case	*temp;
-	int		x;
-	int		y;
 
-	x = 0;
-	y = 0;
 	cel = map->first_cel;
 	while (cel->down)
 	{
