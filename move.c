@@ -14,14 +14,14 @@
 
 void	move_right(t_map *map)
 {
-	if (!is_exit(map, 90, 0) && !is_wall(map, 90, 0))
+	if (!is_exit(map,map->player.pos, 90, 0) && !is_wall(map,map->player.pos ,90, 0))
 	{
 		put_image(map, map->sprite.floor, map->player.pos.x, map->player.pos.y);
+		if (is_collect(map, map->player.pos, 90, 0))
+			update_collect(map, map->player.pos, 90, 0);
 		map->player.pos.x += 90;
 		put_image(map, map->player.player, \
 		map->player.pos.x, map->player.pos.y);
-		if (is_collect(map))
-			update_collect(map, map->player.pos);
 		map->nb_move++;
 		print_move(map);
 
@@ -30,14 +30,14 @@ void	move_right(t_map *map)
 
 void	move_left(t_map *map)
 {
-	if (!is_exit(map, -90, 0) && !is_wall(map, -90, 0))
+	if (!is_exit(map,map->player.pos, -90, 0) && !is_wall(map,map->player.pos, -90, 0))
 	{
 		put_image(map, map->sprite.floor, map->player.pos.x, map->player.pos.y);
+		if (is_collect(map, map->player.pos, -90, 0))
+			update_collect(map, map->player.pos, -90, 0);
 		map->player.pos.x -= 90;
 		put_image(map, map->player.player, \
 		map->player.pos.x, map->player.pos.y);
-		if (is_collect(map))
-			update_collect(map, map->player.pos);
 		map->nb_move++;
 		print_move(map);
 
@@ -46,15 +46,15 @@ void	move_left(t_map *map)
 
 void	move_down(t_map *map)
 {
-	if (!is_exit(map, 0, 90) && !is_wall(map, 0, 90))
+	if (!is_exit(map,map->player.pos, 0, 90) && !is_wall(map,map->player.pos, 0, 90))
 	{
 		put_image(map, map->sprite.floor, \
 		map->player.pos.x, map->player.pos.y);
+		if (is_collect(map, map->player.pos, 0, 90))
+			update_collect(map, map->player.pos, 0, 90);
 		map->player.pos.y += 90;
 		put_image(map, map->player.player, \
 		map->player.pos.x, map->player.pos.y);
-		if (is_collect(map))
-			update_collect(map, map->player.pos);
 		map->nb_move++;
 		print_move(map);
 
@@ -63,14 +63,14 @@ void	move_down(t_map *map)
 
 void	move_up(t_map *map)
 {
-	if (!is_exit(map, 0, -90) && !is_wall(map, 0, -90))
+	if (!is_exit(map,map->player.pos, 0, -90) && !is_wall(map,map->player.pos, 0, -90))
 	{
 		put_image(map, map->sprite.floor, map->player.pos.x, map->player.pos.y);
+		if (is_collect(map, map->player.pos, 0, -90))
+			update_collect(map, map->player.pos, 0, -90);
 		map->player.pos.y -= 90;
 		put_image(map, map->player.player, \
 		map->player.pos.x, map->player.pos.y);
-		if (is_collect(map))
-			update_collect(map, map->player.pos);
 		map->nb_move++;
 		print_move(map);
 	}

@@ -104,6 +104,7 @@ int	main(int argc, char **argv)
 	map = malloc(sizeof (t_map));
 	map->map = NULL;
 	init_map(map);
+	srand(time(0));
 	if (argc == 2)
 	{
 		if (ft_strncmp(ft_strchr(argv[1], '.'), ".ber", ft_strlen(argv[1])))
@@ -125,7 +126,7 @@ int	main(int argc, char **argv)
 		set_exit(map);
 		print_ouachcaca(map);
 		mlx_hook(map->mlx_win, 2, 0, keycode_event, map);
-		mlx_loop_hook(map->mlx, print_player_sprite, map);
+		mlx_loop_hook(map->mlx, loop_manager, map);
 		// mlx_hook(map->mlx_win, 3, 0, print_frog_over_frog, map);
 		// mlx_key_hook(map->mlx_win, , map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);

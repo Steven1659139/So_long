@@ -87,14 +87,14 @@ void	set_exit(t_map *map)
 	}
 }
 
-void	update_collect(t_map *map, t_pos pos)
+void	update_collect(t_map *map, t_pos pos, int x, int y)
 {
 	int		i;
 
 	i = 0;
 	while (i < map->nb_collect)
 	{
-		if (pos.x == map->pos_collect[i].x && pos.y == map->pos_collect[i].y)
+		if (pos.x + x == map->pos_collect[i].x && pos.y + y == map->pos_collect[i].y)
 		{
 			map->pos_collect[i].x = -1;
 			map->pos_collect[i].y = -1;

@@ -17,6 +17,8 @@
 # include "Libft/libft.h"
 # include <stdio.h>
 # include "MinilibX/mlx.h"
+# include <math.h>
+# include <time.h>
 
 typedef struct s_image
 {
@@ -150,11 +152,11 @@ void	move_down(t_map *map);
 void	move_left(t_map *map);
 
 void	set_wall(t_map *map);
-int		is_wall(t_map *map, int x, int y);
-int		is_collect(t_map *map);
-void	update_collect(t_map *map, t_pos pos);
+int		is_wall(t_map *map, t_pos pos, int x, int y);
+int		is_collect(t_map *map, t_pos pos, int x, int y);
+void	update_collect(t_map *map, t_pos pos, int x, int y);
 void	set_collectible(t_map *map);
-int		is_exit(t_map *map, int x, int y);
+int		is_exit(t_map *map, t_pos pos, int x, int y);
 void	set_exit(t_map *map);
 int		quit(t_map *map);
 void	set_map(t_map *map, char *argv);
@@ -171,4 +173,15 @@ int	print_player_sprite(t_map *map);
 void	print_ouachcaca(t_map *map);
 void	ouachcaca_sprite(t_map *map);
 void	init_ouachcaca_image(t_map *map);
+int		move_ouachcaca(t_map *map);
+
+void ouach_move_up(t_map *map);
+void ouach_move_down(t_map *map);
+void ouach_move_left(t_map *map);
+void ouach_move_right(t_map *map);
+int loop_manager(t_map *map);
+
+void ouach_move(t_map *map, int *xy, t_list **sprite, int dis);
+int go_ouachcaca(t_map *map, int direction);
+
 #endif

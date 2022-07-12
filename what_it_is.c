@@ -12,48 +12,49 @@
 
 #include "so_long.h"
 
-int	is_exit(t_map *map, int x, int y)
+int	is_exit(t_map *map,t_pos pos, int move_x, int move_y)
 {
 	int	i;
 
 	i = 0;
 	while (i < map->nb_exit)
 	{
-		if ((map->player.pos.x + x == map->pos_exit[i].x \
-		&& map->player.pos.y + y == map->pos_exit[i].y) && map->col_on_map == 0)
-			exit(0);
-		if (map->player.pos.x + x == map->pos_exit[i].x \
-		&& map->player.pos.y + y == map->pos_exit[i].y)
+		if (pos.x + move_x == map->pos_exit[i].x \
+		&& pos.y + move_y == map->pos_exit[i].y)
+		{
+			if (map->col_on_map == 0 && (map->ouachcaca.pos.x + move_x != map->pos_exit[i].x && map->ouachcaca.pos.y + move_y != map->pos_exit[i].y))
+				exit(0);
 			return (1);
+		}
 		i++;
 	}
 	return (0);
 }
 
-int	is_wall(t_map *map, int x, int y)
+int	is_wall(t_map *map, t_pos pos, int move_x, int move_y)
 {
 	int	i;
 
 	i = 0;
 	while (i < map->nb_wall)
 	{
-		if (map->player.pos.x + x == map->pos_wall[i].x \
-		&& map->player.pos.y + y == map->pos_wall[i].y)
+		if (pos.x + move_x == map->pos_wall[i].x \
+		&& pos.y + move_y == map->pos_wall[i].y)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	is_collect(t_map *map)
+int	is_collect(t_map *map, t_pos pos, int move_x, int move_y)
 {
 	int	i;
 
 	i = 0;
 	while (i < map->nb_collect)
 	{
-		if (map->player.pos.x == map->pos_collect[i].x \
-		&& map->player.pos.y == map->pos_collect[i].y)
+		if (pos.x + move_x == map->pos_collect[i].x \
+		&& pos.y + move_y == map->pos_collect[i].y)
 			return (1);
 		i++;
 	}
