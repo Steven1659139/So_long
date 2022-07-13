@@ -37,10 +37,12 @@ add:
 	git status
 
 update:
+	git fetch
+	git pull origin $(BRANCH)
+
+init:
 	git submodule update --init --recursive
 	./clone_branch.sh
-	git fetch
-	git pull
 
 stat: add
 	git branch
