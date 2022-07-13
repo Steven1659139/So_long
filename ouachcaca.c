@@ -14,7 +14,7 @@ void	print_ouachcaca(t_map *map)
 			if (cel->state == '0')
 			{
 				map->ouachcaca.pos = cel->pos;
-				put_image(map, *(t_image *)map->ouachcaca.sprite_down->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+				put_image(map, map->ouachcaca.sprite_down, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
 				return ;
 			}
 			cel = cel->right;
@@ -79,12 +79,11 @@ int go_ouachcaca(t_map *map, int direction)
 	return (0);
 }
 
-void ouach_move(t_map *map, int *xy, t_list **sprite, int dis)
+void ouach_move(t_map *map, int *xy, t_image *sprite, int dis)
 {
 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
 	*xy += dis;
-	put_image(map, *(t_image *)(*sprite)->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y );
-	*sprite = (*sprite)->next;
+	put_image(map, *sprite, map->ouachcaca.pos.x, map->ouachcaca.pos.y );
 	if (map->player.pos.x == map->ouachcaca.pos.x && map->player.pos.y == map->ouachcaca.pos.y)
 	{
 		printf("Ouachcaca got you after %d moves\n", map->nb_move);

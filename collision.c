@@ -100,6 +100,7 @@ void	update_collect(t_map *map, t_pos pos, int x, int y)
 			map->pos_collect[i].y = -1;
 			map->col_on_map -= 1;
 			if (map->col_on_map == 0)
+				change_sprite(map);
 
 			return ;
 		}
@@ -112,15 +113,18 @@ void	change_sprite(t_map *map)
 	t_list	*list_sprite;
 	t_list	*last;
 
-	list_sprite = ft_lstnew(&map->sprite.p_sprite_1);
+	list_sprite = ft_lstnew(&map->sprite.ultime_1);
 	
-	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_2));
-	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_3));
-	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_4));
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.ultime_2));
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.ultime_3));
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.ultime_4));
 
 	last = ft_lstlast(list_sprite);
 	last->next = list_sprite;
+	// ft_lstclear(&map->player.sprite, free);
 	map->player.sprite = list_sprite;
+	printf("You become a princess!!!\n");
+	return ;
 
 
 

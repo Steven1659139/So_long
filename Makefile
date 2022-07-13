@@ -6,7 +6,7 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-MLXFLAGS = -framework OpenGL -framework AppKit
+MLXFLAGS =  -framework OpenGL -framework AppKit
 
 BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
 COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')

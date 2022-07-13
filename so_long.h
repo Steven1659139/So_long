@@ -48,10 +48,10 @@ typedef struct s_player
 typedef struct s_ouachcaca
 {
 	t_pos	pos;
-	t_list	*sprite_up;
-	t_list	*sprite_down;
-	t_list	*sprite_left;
-	t_list	*sprite_right;
+	t_image	sprite_up;
+	t_image	sprite_down;
+	t_image	sprite_left;
+	t_image	sprite_right;
 	t_pos	down;
 	t_pos	right;
 	t_pos	up;
@@ -81,6 +81,11 @@ typedef	struct s_sprite
 	t_image	p_sprite_2;
 	t_image	p_sprite_3;
 	t_image	p_sprite_4;
+
+	t_image ultime_1;
+	t_image ultime_2;
+	t_image ultime_3;
+	t_image ultime_4;
 
 	t_image ouach_D1;
 	t_image ouach_D2;
@@ -181,11 +186,12 @@ void ouach_move_left(t_map *map);
 void ouach_move_right(t_map *map);
 int loop_manager(t_map *map);
 
-void ouach_move(t_map *map, int *xy, t_list **sprite, int dis);
+void ouach_move(t_map *map, int *xy, t_image *sprite, int dis);
 int go_ouachcaca(t_map *map, int direction);
 void	move_player(t_map *map, int *xy, int dis);
 
 void	print_coll_and_move(t_map *map);
+void	change_sprite(t_map *map);
 
 
 #endif

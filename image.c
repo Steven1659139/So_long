@@ -20,44 +20,46 @@ void	put_image(t_map *map, t_image image, int x, int y)
 
 void	init_ouachcaca_image(t_map *map)
 {
-	map->sprite.ouach_D1.path = "sprite/ouachcaca/down/ouachcaca_down_1.xpm";
-	map->sprite.ouach_D2.path = "sprite/ouachcaca/down/ouachcaca_down_2.xpm";
-	map->sprite.ouach_D3.path = "sprite/ouachcaca/down/ouachcaca_down_3.xpm";
+	map->ouachcaca.sprite_down.path = "sprite/ouachcaca/down/ouachcaca_down_1.xpm";
+	// map->sprite.ouach_D2.path = "sprite/ouachcaca/down/ouachcaca_down_2.xpm";
+	// map->sprite.ouach_D3.path = "sprite/ouachcaca/down/ouachcaca_down_3.xpm";
 
-	map->sprite.ouach_U1.path = "sprite/ouachcaca/up/ouachcaca_up_1.xpm";
-	map->sprite.ouach_U2.path = "sprite/ouachcaca/up/ouachcaca_up_2.xpm";
+	map->ouachcaca.sprite_up.path = "sprite/ouachcaca/up/ouachcaca_up_1.xpm";
+	// map->sprite.ouach_U2.path = "sprite/ouachcaca/up/ouachcaca_up_2.xpm";
 
-	map->sprite.ouach_R1.path = "sprite/ouachcaca/right/ouachcaca_droite_1.xpm";
-	map->sprite.ouach_R2.path = "sprite/ouachcaca/right/ouachcaca_droite_1.xpm";
+	map->ouachcaca.sprite_right.path = "sprite/ouachcaca/right/ouachcaca_droite_1.xpm";
+	// map->sprite.ouach_R2.path = "sprite/ouachcaca/right/ouachcaca_droite_2.xpm";
 
-	map->sprite.ouach_L1.path = "sprite/ouachcaca/left/ouachcaca_gauche_1.xpm";
-	map->sprite.ouach_L2.path = "sprite/ouachcaca/left/ouachcaca_gauche_1.xpm";
+	map->ouachcaca.sprite_left.path = "sprite/ouachcaca/left/ouachcaca_gauche_1.xpm";
+	// map->sprite.ouach_L2.path = "sprite/ouachcaca/left/ouachcaca_gauche_2.xpm";
 
-	map->sprite.ouach_D1.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
-	map->sprite.ouach_D2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
-	map->sprite.ouach_D3.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->ouachcaca.sprite_down.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	// map->sprite.ouach_D2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	// map->sprite.ouach_D3.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
 
-	map->sprite.ouach_U1.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
-	map->sprite.ouach_U2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->ouachcaca.sprite_up.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	// map->sprite.ouach_U2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
 
-	map->sprite.ouach_R1.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
-	map->sprite.ouach_R2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->ouachcaca.sprite_right.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	// map->sprite.ouach_R2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
 
-	map->sprite.ouach_L1.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
-	map->sprite.ouach_L2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	map->ouachcaca.sprite_left.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
+	// map->sprite.ouach_L2.img = mlx_new_image(map->mlx, map->win_size_x, map->win_size_y);
 
-	map->sprite.ouach_D1.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_D1.path, &map->sprite.ouach_D1.width, &map->sprite.ouach_D1.height);
-	map->sprite.ouach_D2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_D2.path, &map->sprite.ouach_D2.width, &map->sprite.ouach_D2.height);
-	map->sprite.ouach_D3.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_D3.path, &map->sprite.ouach_D3.width, &map->sprite.ouach_D3.height);
+	map->ouachcaca.sprite_down.img = mlx_xpm_file_to_image(map->mlx, map->ouachcaca.sprite_down.path, &map->ouachcaca.sprite_down.width, &map->ouachcaca.sprite_down.height);
+	// map->sprite.ouach_D2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_D2.path, &map->sprite.ouach_D2.width, &map->sprite.ouach_D2.height);
+	// map->sprite.ouach_D3.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_D3.path, &map->sprite.ouach_D3.width, &map->sprite.ouach_D3.height);
 
-	map->sprite.ouach_U1.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_U1.path, &map->sprite.ouach_U1.width, &map->sprite.ouach_U1.height);
-	map->sprite.ouach_U2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_U2.path, &map->sprite.ouach_U2.width, &map->sprite.ouach_U2.height);
+	map->ouachcaca.sprite_up.img = mlx_xpm_file_to_image(map->mlx, map->ouachcaca.sprite_up.path, &map->ouachcaca.sprite_up.width, &map->ouachcaca.sprite_up.height);
+	// map->sprite.ouach_U2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_U2.path, &map->sprite.ouach_U2.width, &map->sprite.ouach_U2.height);
 
-	map->sprite.ouach_R1.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_R1.path, &map->sprite.ouach_R1.width, &map->sprite.ouach_R1.height);
-	map->sprite.ouach_R2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_R2.path, &map->sprite.ouach_R2.width, &map->sprite.ouach_R2.height);
+	map->ouachcaca.sprite_right.img = mlx_xpm_file_to_image(map->mlx, map->ouachcaca.sprite_right.path, &map->ouachcaca.sprite_right.width, &map->ouachcaca.sprite_right.height);
+	// map->sprite.ouach_R2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_R2.path, &map->sprite.ouach_R2.width, &map->sprite.ouach_R2.height);
 
-	map->sprite.ouach_L1.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_L1.path, &map->sprite.ouach_L1.width, &map->sprite.ouach_L1.height);
-	map->sprite.ouach_L2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_L2.path, &map->sprite.ouach_L2.width, &map->sprite.ouach_L2.height);
+	map->ouachcaca.sprite_left.img = mlx_xpm_file_to_image(map->mlx, map->ouachcaca.sprite_left.path, &map->ouachcaca.sprite_left.width, &map->ouachcaca.sprite_left.height);
+	// map->sprite.ouach_L2.img = mlx_xpm_file_to_image(map->mlx, map->sprite.ouach_L2.path, &map->sprite.ouach_L2.width, &map->sprite.ouach_L2.height);
+
+	
 
 
 }
@@ -77,6 +79,11 @@ void	image_part1(t_map *map, void *mlx)
 	map->sprite.p_sprite_2.path = "sprite/player/steven_2.xpm";
 	map->sprite.p_sprite_3.path = "sprite/player/steven_3.xpm";
 	map->sprite.p_sprite_4.path = "sprite/player/steven_4.xpm";
+
+	map->sprite.ultime_1.path = "sprite/player/ultime_1.xpm";
+	map->sprite.ultime_2.path = "sprite/player/ultime_2.xpm";
+	map->sprite.ultime_3.path = "sprite/player/ultime_3.xpm";
+	map->sprite.ultime_4.path = "sprite/player/ultime_4.xpm";
 	// map->player.sprite_2.path = "frog_1.xpm";
 	
 	map->sprite.floor.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
@@ -91,6 +98,25 @@ void	image_part1(t_map *map, void *mlx)
 	map->sprite.p_sprite_2.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->sprite.p_sprite_3.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->sprite.p_sprite_4.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+
+	map->sprite.ultime_1.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+	map->sprite.ultime_2.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+	map->sprite.ultime_3.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+	map->sprite.ultime_4.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+
+	map->sprite.ultime_1.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_1.path, \
+	&map->sprite.ultime_1.width, &map->sprite.ultime_1.height);
+
+	map->sprite.ultime_2.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_2.path, \
+	&map->sprite.ultime_2.width, &map->sprite.ultime_2.height);
+
+	map->sprite.ultime_3.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_3.path, \
+	&map->sprite.ultime_3.width, &map->sprite.ultime_3.height);
+
+	map->sprite.ultime_4.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_4.path, \
+	&map->sprite.ultime_4.width, &map->sprite.ultime_4.height);
+	
+
 	// map->player.sprite_2.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	// map->sprite.floor.adresse = mlx_get_data_addr(map->sprite.floor.img, \
 	// &map->sprite.floor.bits_per_pixel, &map->sprite.floor.line_length, &map->sprite.floor.endian);
@@ -147,7 +173,7 @@ void	set_image(t_map *map, void *mlx)
 	image_part2(map, mlx);
 	create_list_sprite(map);
 	init_ouachcaca_image(map);
-	ouachcaca_sprite(map);
+	// ouachcaca_sprite(map);
 }
 
 void	set_cel_image(t_map *map, t_case *cel)
@@ -224,46 +250,46 @@ void	create_list_sprite(t_map *map)
 
 }
 
-void	ouachcaca_sprite(t_map *map)
-{
-	t_list	*list_sprite_down;
-	t_list	*list_sprite_left;
-	t_list	*list_sprite_right;
-	t_list	*list_sprite_up;
-	t_list	*last;
+// void	ouachcaca_sprite(t_map *map)
+// {
+// 	t_list	*list_sprite_down;
+// 	t_list	*list_sprite_left;
+// 	t_list	*list_sprite_right;
+// 	t_list	*list_sprite_up;
+// 	t_list	*last;
 
-	list_sprite_down = ft_lstnew(&map->sprite.ouach_D1);
+// 	list_sprite_down = ft_lstnew(&map->ouachcaca.sprite_down);
 	
-	ft_lstadd_back(&list_sprite_down, ft_lstnew(&map->sprite.ouach_D2));
-	ft_lstadd_back(&list_sprite_down, ft_lstnew(&map->sprite.ouach_D3));
-	map->ouachcaca.sprite_down = list_sprite_down;
+// 	ft_lstadd_back(&list_sprite_down, ft_lstnew(&map->sprite.ouach_D2));
+// 	ft_lstadd_back(&list_sprite_down, ft_lstnew(&map->sprite.ouach_D3));
+// 	map->ouachcaca.sprite_down = list_sprite_down;
 
-	list_sprite_up = ft_lstnew(&map->sprite.ouach_U1);
-	ft_lstadd_back(&list_sprite_up, ft_lstnew(&map->sprite.ouach_U2));
-	map->ouachcaca.sprite_up = list_sprite_up;
-
-
-	list_sprite_left = ft_lstnew(&map->sprite.ouach_L1);
-	ft_lstadd_back(&list_sprite_left, ft_lstnew(&map->sprite.ouach_L2));
-	map->ouachcaca.sprite_left = list_sprite_left;
+// 	list_sprite_up = ft_lstnew(&map->ouachcaca.sprite_up);
+// 	ft_lstadd_back(&list_sprite_up, ft_lstnew(&map->sprite.ouach_U2));
+// 	map->ouachcaca.sprite_up = list_sprite_up;
 
 
-	list_sprite_right = ft_lstnew(&map->sprite.ouach_R1);
-	ft_lstadd_back(&list_sprite_right, ft_lstnew(&map->sprite.ouach_R2));
-	map->ouachcaca.sprite_right = list_sprite_right;
+// 	list_sprite_left = ft_lstnew(&map->sprite.ouach_L1);
+// 	ft_lstadd_back(&list_sprite_left, ft_lstnew(&map->sprite.ouach_L2));
+// 	map->ouachcaca.sprite_left = list_sprite_left;
 
-	last = ft_lstlast(list_sprite_down);
-	last->next = list_sprite_down;
 
-	last = ft_lstlast(list_sprite_left);
-	last->next = list_sprite_left;
+// 	list_sprite_right = ft_lstnew(&map->ouachcaca.sprite_right);
+// 	ft_lstadd_back(&list_sprite_right, ft_lstnew(&map->sprite.ouach_R2));
+// 	map->ouachcaca.sprite_right = list_sprite_right;
+
+// 	last = ft_lstlast(list_sprite_down);
+// 	last->next = list_sprite_down;
+
+// 	last = ft_lstlast(list_sprite_left);
+// 	last->next = list_sprite_left;
 	
 
-	last = ft_lstlast(list_sprite_right);
-	last->next = list_sprite_right;
+// 	last = ft_lstlast(list_sprite_right);
+// 	last->next = list_sprite_right;
 
 
 
-	last = ft_lstlast(list_sprite_up);
-	last->next = list_sprite_up;
-}
+// 	last = ft_lstlast(list_sprite_up);
+// 	last->next = list_sprite_up;
+// }
