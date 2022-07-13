@@ -99,10 +99,49 @@ void	update_collect(t_map *map, t_pos pos, int x, int y)
 			map->pos_collect[i].x = -1;
 			map->pos_collect[i].y = -1;
 			map->col_on_map -= 1;
-			printf("\033[1A%d restants sur %d\n\033[1B", \
-			map->col_on_map, map->nb_collect);
+			if (map->col_on_map == 0)
+
 			return ;
 		}
 		i++;
 	}
+}
+
+void	change_sprite(t_map *map)
+{
+	t_list	*list_sprite;
+	t_list	*last;
+
+	list_sprite = ft_lstnew(&map->sprite.p_sprite_1);
+	
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_2));
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_3));
+	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.p_sprite_4));
+
+	last = ft_lstlast(list_sprite);
+	last->next = list_sprite;
+	map->player.sprite = list_sprite;
+
+
+
+
+}
+
+void	print_coll_and_move(t_map *map)
+{
+	char	*str;
+
+	str = ft_itoa(map->nb_move);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->sprite.get_rekt.img, 0, 0);
+	mlx_string_put(map->mlx, map->mlx_win, 10, 20, 0XFF00FF, "Moves=");
+	mlx_string_put(map->mlx, map->mlx_win, 60, 20, 0XFF00FF, str);
+	free(str);
+	str = ft_itoa(map->col_on_map);
+	mlx_string_put(map->mlx, map->mlx_win, 5, 35, 0XFF00FF, str );
+	mlx_string_put(map->mlx, map->mlx_win, 15, 35, 0XFF00FF, "collectibles sur");
+	free(str);
+	str = ft_itoa(map->nb_collect);
+	mlx_string_put(map->mlx, map->mlx_win, 130, 35, 0XFF00FF, str);
+	free(str);
+
 }

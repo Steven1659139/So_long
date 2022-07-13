@@ -26,22 +26,32 @@ int	keycode_event(int keycode, t_map *map)
 		exit(0);
 	}
 	if (keycode == 2)
-		move_right(map);
+	{
+		if (!is_exit(map,map->player.pos, 90, 0) && !is_wall(map,map->player.pos ,90, 0))
+			move_player(map, &map->player.pos.x, 90);
+	}
 	if (keycode == 0)
-		move_left(map);
+	{
+	
+		if (!is_exit(map,map->player.pos, -90, 0) && !is_wall(map,map->player.pos, -90, 0))
+			move_player(map, &map->player.pos.x, -90);
+	}
 	if (keycode == 13)
-		move_up(map);
+	{
+		if (!is_exit(map,map->player.pos, 0, -90) && !is_wall(map,map->player.pos, 0, -90))
+			move_player(map, &map->player.pos.y, -90);
+	}
 	if (keycode == 1)
-		move_down(map);
+	{
+
+		if (!is_exit(map,map->player.pos, 0, 90) && !is_wall(map,map->player.pos, 0, 90))
+			move_player(map, &map->player.pos.y, 90);
+	}
 	return (0);
 }
 
 int	quit(t_map *map)
 {
-	if (map)
-	{
-		mlx_destroy_window(map->mlx, map->mlx_win);
-		exit(0);
-	}
+	clean(map, NULL, 0);
 	return (0);
 }

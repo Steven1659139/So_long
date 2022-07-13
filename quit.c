@@ -1,13 +1,13 @@
 #include "so_long.h"
 
-void	clean_error(t_map *map, char *str)
+void	clean(t_map *map, char *str, int error)
 {
 	int	i;
 
 	i = 0;
 
-	// if (map->map)
-	// 	table_flip(map->map);
+	if (map->map)
+		table_flip(map->map);
 	if (map->first_cel)
 		free_map(map);
 	if (map->pos_collect)
@@ -16,20 +16,20 @@ void	clean_error(t_map *map, char *str)
 		free(map->pos_wall);
 	if (map->pos_exit)
 		free(map->pos_exit);
-	if (map->mlx)
-		image_destroyer(map);
-	if (map->map)
-	{
+	// if (map->mlx)
+	// 	image_destroyer(map);
+	// if (map->map)
+	// {
 
-		while (map->map[i])
-		{
-			// printf("%d- %s", i, map->map[i]);
-			free(map->map[i++]);
-		}
-		// printf("%d- %s", i, map->map[i]);
-		free(map->map[i]);
-		free(map->map);
-	}
+	// 	while (map->map[i])
+	// 	{
+	// 		// printf("%d- %s", i, map->map[i]);
+	// 		free(map->map[i++]);
+	// 	}
+	// 	// printf("%d- %s", i, map->map[i]);
+	// 	free(map->map[i]);
+	// 	free(map->map);
+	// }
 	
 	// while (map->map[i])
 	// {
@@ -39,10 +39,11 @@ void	clean_error(t_map *map, char *str)
 
 
 	free(map);
-	yo_its_wrong(str);
+	if (error == 1)
+		yo_its_wrong(str);
 
 
-
+	exit(0);
 
 
 

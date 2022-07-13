@@ -108,8 +108,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (ft_strncmp(ft_strchr(argv[1], '.'), ".ber", ft_strlen(argv[1])))
-			clean_error(map, "Le fichier doit être de type .ber\n");
-		//printf("\n\n");
+			clean(map, "Le fichier doit être de type .ber\n", 1);
 		set_map(map, argv[1]);
 		check_map(map);
 		map->col_on_map = map->nb_collect;
@@ -127,8 +126,6 @@ int	main(int argc, char **argv)
 		print_ouachcaca(map);
 		mlx_hook(map->mlx_win, 2, 0, keycode_event, map);
 		mlx_loop_hook(map->mlx, loop_manager, map);
-		// mlx_hook(map->mlx_win, 3, 0, print_frog_over_frog, map);
-		// mlx_key_hook(map->mlx_win, , map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);
 		mlx_loop(map->mlx);
 	}

@@ -85,37 +85,43 @@ void ouach_move(t_map *map, int *xy, t_list **sprite, int dis)
 	*xy += dis;
 	put_image(map, *(t_image *)(*sprite)->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y );
 	*sprite = (*sprite)->next;
+	if (map->player.pos.x == map->ouachcaca.pos.x && map->player.pos.y == map->ouachcaca.pos.y)
+	{
+		printf("Ouachcaca got you after %d moves\n", map->nb_move);
+		clean(map, NULL, 0);
+		
+	}
 }
 
-void ouach_move_right(t_map *map)
-{
+// void ouach_move_right(t_map *map)
+// {
 	
 	
-	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-	map->ouachcaca.pos.x += 90;
-	put_image(map, *(t_image *)map->ouachcaca.sprite_right->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y );
-	map->ouachcaca.sprite_right = map->ouachcaca.sprite_right->next;
-}
+// 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+// 	map->ouachcaca.pos.x += 90;
+// 	put_image(map, *(t_image *)map->ouachcaca.sprite_right->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y );
+// 	map->ouachcaca.sprite_right = map->ouachcaca.sprite_right->next;
+// }
 
-void ouach_move_left(t_map *map)
-{
-	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-	map->ouachcaca.pos.x -= 90;
-	put_image(map, *(t_image *)map->ouachcaca.sprite_left->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-	map->ouachcaca.sprite_left = map->ouachcaca.sprite_left->next;
-}
-void ouach_move_up(t_map *map)
-{
-	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-	map->ouachcaca.pos.y += 90;
-	put_image(map, *(t_image *)map->ouachcaca.sprite_up->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-	map->ouachcaca.sprite_up = map->ouachcaca.sprite_up->next;
-}
-void ouach_move_down(t_map *map)
-{
-	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-	map->ouachcaca.pos.y -= 90;
-	put_image(map, *(t_image *)map->ouachcaca.sprite_down->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-	map->ouachcaca.sprite_down = map->ouachcaca.sprite_down->next;
-}
+// void ouach_move_left(t_map *map)
+// {
+// 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+// 	map->ouachcaca.pos.x -= 90;
+// 	put_image(map, *(t_image *)map->ouachcaca.sprite_left->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+// 	map->ouachcaca.sprite_left = map->ouachcaca.sprite_left->next;
+// }
+// void ouach_move_up(t_map *map)
+// {
+// 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+// 	map->ouachcaca.pos.y += 90;
+// 	put_image(map, *(t_image *)map->ouachcaca.sprite_up->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+// 	map->ouachcaca.sprite_up = map->ouachcaca.sprite_up->next;
+// }
+// void ouach_move_down(t_map *map)
+// {
+// 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+// 	map->ouachcaca.pos.y -= 90;
+// 	put_image(map, *(t_image *)map->ouachcaca.sprite_down->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+// 	map->ouachcaca.sprite_down = map->ouachcaca.sprite_down->next;
+// }
 

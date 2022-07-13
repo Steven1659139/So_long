@@ -12,6 +12,8 @@
 
 #include "so_long.h"
 
+
+
 int	is_exit(t_map *map,t_pos pos, int move_x, int move_y)
 {
 	int	i;
@@ -23,7 +25,11 @@ int	is_exit(t_map *map,t_pos pos, int move_x, int move_y)
 		&& pos.y + move_y == map->pos_exit[i].y)
 		{
 			if (map->col_on_map == 0 && (map->ouachcaca.pos.x + move_x != map->pos_exit[i].x && map->ouachcaca.pos.y + move_y != map->pos_exit[i].y))
-				exit(0);
+			{
+				printf("Your reign begin after %d moves\n", map->nb_move);
+				clean(map, NULL, 0);
+			}
+
 			return (1);
 		}
 		i++;

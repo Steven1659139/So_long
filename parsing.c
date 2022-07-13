@@ -67,25 +67,25 @@ void	check_map(t_map *map)
 	int	i;
 
 	if (!map->map)
-		clean_error(map, "Le fichier est vide.\n");
+		clean(map, "Le fichier est vide.\n", 1 );
 	map->len_line = ft_strlen(map->map[0]);
 	map->nb_line = tab_length(map->map);
 	i = 0;
 	if (!check_edge(map->map[i++], map))
-		clean_error(map, "Le haut de la carte n'est pas fermée.\n");
+		clean(map, "Le haut de la carte n'est pas fermée.\n", 1);
 	while (i < (map->nb_line - 1))
 	{
 		if (!check_line(map->map[i++], map))
-			clean_error(map, "Carte non valide\n");
+			clean(map, "Carte non valide\n", 1);
 	}
 	if (!check_edge(map->map[i], map))
-		clean_error(map, "Le bas de la carte n'est pas fermé.\n");
+		clean(map, "Le bas de la carte n'est pas fermé.\n", 1);
 	if (map->nb_collect < 1)
-		clean_error(map, "Il doit y avoir des collectibles.\n");
+		clean(map, "Il doit y avoir des collectibles.\n", 1);
 	if (map->nb_player < 1 || map->nb_player > 1)
-		clean_error(map, "Il doit y avoir exactement 1 joueur.\n");
+		clean(map, "Il doit y avoir exactement 1 joueur.\n", 1);
 	if (map->nb_exit < 1)
-		clean_error(map, "Il doit y avoir une sortie.\n");
+		clean(map, "Il doit y avoir une sortie.\n", 1);
 	
 
 }

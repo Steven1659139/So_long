@@ -162,7 +162,7 @@ int		quit(t_map *map);
 void	set_map(t_map *map, char *argv);
 void	update_cel(t_map *map);
 void	init_map(t_map *map);
-void	clean_error(t_map *map, char *str);
+void	clean(t_map *map, char *str, int error);
 void	free_map(t_map *map);
 void	image_destroyer(t_map *map);
 void	print_move(t_map *map);
@@ -183,5 +183,9 @@ int loop_manager(t_map *map);
 
 void ouach_move(t_map *map, int *xy, t_list **sprite, int dis);
 int go_ouachcaca(t_map *map, int direction);
+void	move_player(t_map *map, int *xy, int dis);
+
+void	print_coll_and_move(t_map *map);
+
 
 #endif

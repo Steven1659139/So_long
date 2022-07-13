@@ -116,7 +116,7 @@ void	set_map(t_map *map, char *argv)
 
 	fd = open(argv, O_RDONLY, 0777);
 	if (fd == -1)
-		clean_error(map, "Erreur lors de la lecture du fichier.\n");
+		clean(map, "Erreur lors de la lecture du fichier.\n", 1);
 	i = 0;
 	map->map = NULL;
 	line = get_next_line(fd);
