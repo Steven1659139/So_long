@@ -82,8 +82,8 @@ void	image_part1(t_map *map, void *mlx)
 
 	map->sprite.ultime_1.path = "sprite/player/ultime_1.xpm";
 	map->sprite.ultime_2.path = "sprite/player/ultime_2.xpm";
-	map->sprite.ultime_3.path = "sprite/player/ultime_3.xpm";
-	map->sprite.ultime_4.path = "sprite/player/ultime_4.xpm";
+	// map->sprite.ultime_3.path = "sprite/player/ultime_3.xpm";
+	// map->sprite.ultime_4.path = "sprite/player/ultime_4.xpm";
 	// map->player.sprite_2.path = "frog_1.xpm";
 	
 	map->sprite.floor.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
@@ -101,8 +101,8 @@ void	image_part1(t_map *map, void *mlx)
 
 	map->sprite.ultime_1.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 	map->sprite.ultime_2.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
-	map->sprite.ultime_3.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
-	map->sprite.ultime_4.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+	// map->sprite.ultime_3.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
+	// map->sprite.ultime_4.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);
 
 	map->sprite.ultime_1.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_1.path, \
 	&map->sprite.ultime_1.width, &map->sprite.ultime_1.height);
@@ -110,11 +110,11 @@ void	image_part1(t_map *map, void *mlx)
 	map->sprite.ultime_2.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_2.path, \
 	&map->sprite.ultime_2.width, &map->sprite.ultime_2.height);
 
-	map->sprite.ultime_3.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_3.path, \
-	&map->sprite.ultime_3.width, &map->sprite.ultime_3.height);
+	// map->sprite.ultime_3.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_3.path, \
+	// &map->sprite.ultime_3.width, &map->sprite.ultime_3.height);
 
-	map->sprite.ultime_4.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_4.path, \
-	&map->sprite.ultime_4.width, &map->sprite.ultime_4.height);
+	// map->sprite.ultime_4.img = mlx_xpm_file_to_image(mlx, map->sprite.ultime_4.path, \
+	// &map->sprite.ultime_4.width, &map->sprite.ultime_4.height);
 	
 
 	// map->player.sprite_2.img = mlx_new_image(mlx, map->win_size_x, map->win_size_y);

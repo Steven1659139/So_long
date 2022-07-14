@@ -84,21 +84,21 @@ typedef	struct s_sprite
 
 	t_image ultime_1;
 	t_image ultime_2;
-	t_image ultime_3;
-	t_image ultime_4;
+	// t_image ultime_3;
+	// t_image ultime_4;
 
 	t_image ouach_D1;
-	t_image ouach_D2;
-	t_image ouach_D3;
+	// t_image ouach_D2;
+	// t_image ouach_D3;
 
 	t_image	ouach_U1;
-	t_image	ouach_U2;
+	// t_image	ouach_U2;
 
 	t_image	ouach_R1;
-	t_image	ouach_R2;
+	// t_image	ouach_R2;
 
 	t_image	ouach_L1;
-	t_image	ouach_L2;
+	// t_image	ouach_L2;
 }			t_sprite;
 
 typedef struct s_map
@@ -120,7 +120,7 @@ typedef struct s_map
 	void		*mlx;
 	void		*mlx_win;
 
-	t_image		ennemi;
+	// t_image		ennemi;
 	t_sprite	sprite;
 	t_player	player;
 	t_ouachcaca	ouachcaca;

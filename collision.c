@@ -116,13 +116,14 @@ void	change_sprite(t_map *map)
 	list_sprite = ft_lstnew(&map->sprite.ultime_1);
 	
 	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.ultime_2));
-	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.ultime_3));
-	ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.ultime_4));
+	// ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.ultime_3));
+	// ft_lstadd_back(&list_sprite, ft_lstnew(&map->sprite.ultime_4));
 
 	last = ft_lstlast(list_sprite);
 	last->next = list_sprite;
-	// ft_lstclear(&map->player.sprite, free);
+	ft_lstclear(&map->player.sprite, NULL);
 	map->player.sprite = list_sprite;
+	map->player.player = map->sprite.ultime_1;
 	printf("You become a princess!!!\n");
 	return ;
 
