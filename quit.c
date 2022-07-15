@@ -2,9 +2,9 @@
 
 void	clean(t_map *map, char *str, int error)
 {
-	int	i;
 
-	i = 0;
+	mlx_destroy_window(map->mlx, map->mlx_win);
+	exit(0);
 
 	if (map->map)
 		table_flip(map->map);
@@ -18,8 +18,8 @@ void	clean(t_map *map, char *str, int error)
 		free(map->pos_exit);
 	if (map->player.sprite)
 		ft_lstclear(&map->player.sprite, NULL);
-	// if (map->mlx)
-	// 	image_destroyer(map);
+	if (map->mlx)
+		image_destroyer(map);
 	// if (map->map)
 	// {
 
@@ -39,6 +39,7 @@ void	clean(t_map *map, char *str, int error)
 	// }
 	
 	free(map->mlx);
+	// free(map->mlx_win);
 
 	free(map);
 	if (error == 1)
@@ -73,19 +74,21 @@ void	free_map(t_map *map)
 
 void	image_destroyer(t_map *map)
 {
-	mlx_destroy_image(map->mlx, &map->sprite.p_sprite_1);
-	mlx_destroy_image(map->mlx, &map->sprite.p_sprite_2);
-	mlx_destroy_image(map->mlx, &map->sprite.p_sprite_3);
-	mlx_destroy_image(map->mlx, &map->sprite.p_sprite_4);
-	mlx_destroy_image(map->mlx, &map->sprite.ultime_1);
-	mlx_destroy_image(map->mlx, &map->sprite.ultime_2);
-	mlx_destroy_image(map->mlx, &map->sprite.ouach_D1);
-	mlx_destroy_image(map->mlx, &map->sprite.ouach_U1);
-	mlx_destroy_image(map->mlx, &map->sprite.ouach_L1);
-	mlx_destroy_image(map->mlx, &map->sprite.ouach_R1);
+	mlx_destroy_image(map->mlx, map->sprite.p_sprite_1.img);
+	mlx_destroy_image(map->mlx, map->sprite.p_sprite_2.img);
+	mlx_destroy_image(map->mlx, map->sprite.p_sprite_3.img);
+	mlx_destroy_image(map->mlx, map->sprite.p_sprite_4.img);
+	mlx_destroy_image(map->mlx, map->sprite.ultime_1.img);
+	mlx_destroy_image(map->mlx, map->sprite.ultime_2.img);
+	mlx_destroy_image(map->mlx, map->ouachcaca.sprite_down.img);
+	mlx_destroy_image(map->mlx, map->ouachcaca.sprite_up.img);
+	mlx_destroy_image(map->mlx, map->ouachcaca.sprite_left.img);
+	mlx_destroy_image(map->mlx, map->ouachcaca.sprite_right.img);
 
-	mlx_destroy_image(map->mlx, &map->sprite.floor);
-	mlx_destroy_image(map->mlx, &map->sprite.collectible);
-	mlx_destroy_image(map->mlx, &map->sprite.wall);
+	mlx_destroy_image(map->mlx, map->sprite.floor.img);
+	mlx_destroy_image(map->mlx, map->sprite.collectible.img);
+	mlx_destroy_image(map->mlx, map->sprite.wall.img);
+	mlx_destroy_image(map->mlx, map->sprite.exit.img);
+	mlx_destroy_image(map->mlx, map->sprite.get_rekt.img);
 	mlx_destroy_window(map->mlx, map->mlx_win);
 }

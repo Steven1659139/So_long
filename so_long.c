@@ -125,8 +125,8 @@ int	main(int argc, char **argv)
 		set_exit(map);
 		print_ouachcaca(map);
 		mlx_hook(map->mlx_win, 2, 0, keycode_event, map);
-		mlx_loop_hook(map->mlx, loop_manager, map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);
+		mlx_loop_hook(map->mlx, loop_manager, map);
 		mlx_loop(map->mlx);
 	}
 	free(map);
