@@ -21,7 +21,7 @@ int	print_keycode(int keycode)
 int	keycode_event(int keycode, t_map *map)
 {
 	if (keycode == 53)
-		clean(map->mlx, NULL, 0);
+		clean(map, NULL, 0);
 	if (keycode == 2)
 	{
 		if (!is_exit(map,map->player.pos, 90, 0) && !is_wall(map,map->player.pos ,90, 0))

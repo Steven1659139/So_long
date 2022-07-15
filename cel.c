@@ -41,8 +41,10 @@ void	update_cel(t_map *map)
 void	add_cel(t_case *cel)
 {
 	t_case	*new_cel;
+	static int i = 2;
 
 	new_cel = malloc(sizeof(t_case));
+	printf("Cel %d creat\n", i++);
 	cel->right = new_cel;
 	new_cel->left = cel;
 }
