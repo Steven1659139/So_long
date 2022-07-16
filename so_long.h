@@ -69,40 +69,24 @@ typedef struct s_case
 	t_image			image;
 }			t_case;
 
-typedef	struct s_sprite
+typedef struct s_sprite
 {
 	t_image	floor;
 	t_image	wall;
 	t_image	collectible;
 	t_image	exit;
 	t_image	get_rekt;
-
 	t_image	p_sprite_1;
 	t_image	p_sprite_2;
 	t_image	p_sprite_3;
 	t_image	p_sprite_4;
-
-	t_image ultime_1;
-	t_image ultime_2;
-	// t_image ultime_3;
-	// t_image ultime_4;
-
-	t_image ouach_D1;
-	// t_image ouach_D2;
-	// t_image ouach_D3;
-
-	t_image	ouach_U1;
-	// t_image	ouach_U2;
-
-	t_image	ouach_R1;
-	// t_image	ouach_R2;
-
-	t_image	ouach_L1;
-	// t_image	ouach_L2;
+	t_image	ultime_1;
+	t_image	ultime_2;
 }			t_sprite;
 
 typedef struct s_map
 {
+	int			fd;
 	int			nb_exit;
 	int			nb_player;
 	int			nb_collect;
@@ -119,8 +103,6 @@ typedef struct s_map
 	char		**map;
 	void		*mlx;
 	void		*mlx_win;
-
-	// t_image		ennemi;
 	t_sprite	sprite;
 	t_player	player;
 	t_ouachcaca	ouachcaca;
@@ -128,7 +110,6 @@ typedef struct s_map
 	t_case		*player_cel;
 
 }				t_map;
-
 
 void	my_mlx_pixel_put(t_image *img, int x, int y, int color);
 void	print_tab(char **tab);
@@ -171,27 +152,28 @@ void	clean(t_map *map, char *str, int error);
 void	free_map(t_map *map);
 void	image_destroyer(t_map *map);
 void	print_move(t_map *map);
-int			print_frog_over_frog(t_map *map);
+int		print_frog_over_frog(t_map *map);
 void	create_list_sprite(t_map *map);
 
-int	print_player_sprite(t_map *map);
+int		print_player_sprite(t_map *map);
 void	print_ouachcaca(t_map *map);
 void	ouachcaca_sprite(t_map *map);
-void	init_ouachcaca_image(t_map *map);
+void	init_ouachcaca_image_1(t_map *map);
+void	init_ouachcaca_image_2(t_map *map);
 int		move_ouachcaca(t_map *map);
+int		loop_manager(t_map *map);
 
-void ouach_move_up(t_map *map);
-void ouach_move_down(t_map *map);
-void ouach_move_left(t_map *map);
-void ouach_move_right(t_map *map);
-int loop_manager(t_map *map);
-
-void ouach_move(t_map *map, int *xy, t_image *sprite, int dis);
-int go_ouachcaca(t_map *map, int direction);
+void	ouach_move(t_map *map, int *xy, t_image *sprite, int dis);
+int		go_ouachcaca(t_map *map, int direction);
 void	move_player(t_map *map, int *xy, int dis);
 
 void	print_coll_and_move(t_map *map);
 void	change_sprite(t_map *map);
 
+void	image_part1(t_map *map, void *mlx);
+void	image_part2(t_map *map, void *mlx);
+void	image_part3(t_map *map, void *mlx);
+void	image_manager(t_map *map, void *mlx);
+int		collision_manager(t_map *map, t_pos pos, int move_x, int move_y);
 
 #endif

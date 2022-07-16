@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = so_long.c parsing.c image.c map.c event.c move.c collision.c cel.c what_it_is.c quit.c ouachcaca.c loop.c
+SRCS = so_long.c parsing.c image.c map.c event.c move.c set_collision.c cel.c check_collision.c quit.c ouachcaca.c update.c print.c manager.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -35,6 +35,9 @@ add:
 	@$(MAKE) -C Libft add
 	git add *.c *.h Makefile *.xpm *.ber
 	git status
+
+norm:
+	norminette *.c *.h
 
 update:
 	git fetch

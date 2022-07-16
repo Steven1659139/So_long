@@ -12,17 +12,6 @@
 
 #include "so_long.h"
 
-void	print_tab(char **tab)
-{
-	int	i;
-
-	if (!*tab)
-		return ;
-	i = -1;
-	while (tab[++i])
-		printf("%s", tab[i]);
-}
-
 int	check_edge(char *line, t_map *map)
 {
 	if (ft_strlen(line) != map->len_line)
@@ -67,7 +56,7 @@ void	check_map(t_map *map)
 	int	i;
 
 	if (!map->map)
-		clean(map, "Le fichier est vide.\n", 1 );
+		clean(map, "Le fichier est vide.\n", 1);
 	map->len_line = ft_strlen(map->map[0]);
 	map->nb_line = tab_length(map->map);
 	i = 0;
@@ -86,6 +75,4 @@ void	check_map(t_map *map)
 		clean(map, "Il doit y avoir exactement 1 joueur.\n", 1);
 	if (map->nb_exit < 1)
 		clean(map, "Il doit y avoir une sortie.\n", 1);
-	
-
 }

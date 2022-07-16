@@ -12,65 +12,12 @@
 
 #include "so_long.h"
 
-void	print_map(t_map *map)
-{
-	t_case	*cel;
-	t_case	*next_line;
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
-	cel = map->first_cel;
-	while (cel->down)
-	{
-		next_line = cel->down;
-		while (cel->right)
-		{
-			put_image(map, cel->image, x, y);
-			cel->pos.x = x;
-			cel->pos.y = y;
-			if (cel->state == 'P')
-				map->player.pos = cel->pos;
-			cel = cel->right;
-			x += 90;
-		}
-		x = 0;
-		y += 90;
-		cel = next_line;
-	}
-	mlx_put_image_to_window(map->mlx, map->mlx_win, map->sprite.get_rekt.img, 0, 0);
-	mlx_string_put(map->mlx, map->mlx_win, 10, 20, 0XFF00FF, "Moves= 0");
-}
-
-void	set_case(t_map	*map)
-{
-	int		y;
-	t_case	*prev_line;
-
-	y = map->nb_line;
-	create_first_line(map);
-	prev_line = map->first_cel;
-	while (y)
-	{
-		prev_line = create_mid_line(prev_line);
-		y--;
-	}
-	while (prev_line->right)
-	{
-		prev_line->down = NULL;
-		prev_line = prev_line->right;
-	}
-	update_cel(map);
-}
-
 void	create_first_line(t_map *map)
 {
 	int		x;
 	t_case	*cel;
 
-	cel = ft_calloc(1 ,sizeof(t_case));
-	printf("case 1 = %p\n", cel);
+	cel = ft_calloc(1, sizeof(t_case));
 	cel->left = NULL;
 	map->first_cel = cel;
 	x = map->len_line - 1;
@@ -91,7 +38,6 @@ t_case	*create_mid_line(t_case *prev_line)
 	t_case	*temp;
 
 	new_line = ft_calloc(1, sizeof(t_case));
-	printf("cel 6 creat or new line = %p\n", new_line);
 	new_line->left = NULL;
 	temp = new_line;
 	while (prev_line->right)
@@ -110,24 +56,21 @@ t_case	*create_mid_line(t_case *prev_line)
 
 void	set_map(t_map *map, char *argv)
 {
-	int		fd;
-
 	char	*line;
 	int		i;
 	char	*temp;
 
-	fd = open(argv, O_RDONLY, 0777);
-	if (fd == -1)
+	map->fd = open(argv, O_RDONLY, 0777);
+	if (map->fd == -1)
 		clean(map, "Erreur lors de la lecture du fichier.\n", 1);
 	i = 0;
 	map->map = NULL;
-	line = get_next_line(fd);
+	line = get_next_line(map->fd);
 	map->map = tab_join(map->map, line);
-	// printf("%s",map->map[i]);
 	while (line)
 	{
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(map->fd);
 		map->map = tab_join(map->map, line);
 		if (!ft_strchr(map->map[i], '\n'))
 		{
@@ -138,33 +81,4 @@ void	set_map(t_map *map, char *argv)
 		i++;
 	}
 	free(line);
-	close(fd);
-	map->map = tab_trunc(map->map, "\n");
-}
-
-
-void	put_ennemi(t_map *map)
-{
-	t_case *cel;
-	t_case *next_line;
-
-
-	cel = map->first_cel->down;
-	while (cel->down)
-	{
-		next_line = cel->down;
-		while (cel->right)
-		{
-			if (cel->state == '0')
-				{
-					map->ouachcaca.pos = cel->pos;
-					break ;
-				}
-			cel = cel->right;
-		}
-		if (cel->state == '0')
-			break ;
-		cel = next_line;
-	}
-
 }

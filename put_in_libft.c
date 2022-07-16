@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   put_in_libft.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 17:23:48 by slavoie           #+#    #+#             */
-/*   Updated: 2022/07/16 17:23:49 by slavoie          ###   ########.fr       */
+/*   Created: 2022/07/16 17:22:09 by slavoie           #+#    #+#             */
+/*   Updated: 2022/07/16 17:22:11 by slavoie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+void	print_tab(char **tab)
+{
+	int	i;
 
-// int loop_manager(t_map *map)
-// {
-// 	move_ouachcaca(map);
-// 	print_player_sprite(map);
-
-// 	return (0);
-// }
+	if (!*tab)
+		return ;
+	i = -1;
+	while (tab[++i])
+		printf("%s", tab[i]);
+}

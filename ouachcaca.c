@@ -1,34 +1,23 @@
-# include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ouachcaca.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slavoie <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/16 17:23:16 by slavoie           #+#    #+#             */
+/*   Updated: 2022/07/16 17:23:18 by slavoie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	print_ouachcaca(t_map *map)
-{
-	t_case *cel;
-	t_case	*next_line;
-	
-	cel = map->first_cel;
-	while (cel->down)
-	{
-		next_line = cel->down;
-		while (cel->right)
-		{
-			if (cel->state == '0')
-			{
-				map->ouachcaca.pos = cel->pos;
-				put_image(map, map->ouachcaca.sprite_down, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-				return ;
-			}
-			cel = cel->right;
-		}
-		cel = next_line;
-	}
-}
+#include "so_long.h"
 
 int	move_ouachcaca(t_map *map)
 {
-	static int i = 10;
+	static int	i = 10;
 	static int	direction = 1;
-	int 	count;
-	static int random_timer = 100;
+	int			count;
+	static int	random_timer = 100;
 
 	count = 0;
 	if (i-- <= 0)
@@ -51,27 +40,26 @@ int	move_ouachcaca(t_map *map)
 	return (0);
 }
 
-
-int go_ouachcaca(t_map *map, int direction)
+int	go_ouachcaca(t_map *map, int direction)
 {
-	if ((!is_wall(map,map->ouachcaca.pos, -90, 0) && !is_collect(map, map->ouachcaca.pos, -90, 0) && !is_exit(map, map->ouachcaca.pos, -90, 0)) && direction == 1)
+	if (collision_manager(map, map->ouachcaca.pos, -90, 0) && direction == 1)
 	{
-		ouach_move(map, &map->ouachcaca.pos.x, &map->ouachcaca.sprite_left, -90);
+		ouach_move(map, &map->ouachcaca.pos.x, \
+		&map->ouachcaca.sprite_left, -90);
 		return (1);
 	}
-
-	if ((!is_wall(map,map->ouachcaca.pos, 0, 90) && !is_collect(map, map->ouachcaca.pos, 0, 90) && !is_exit(map, map->ouachcaca.pos, 0, 90))&& direction == 4 )
+	if (collision_manager(map, map->ouachcaca.pos, 0, 90) && direction == 4)
 	{
 		ouach_move(map, &map->ouachcaca.pos.y, &map->ouachcaca.sprite_down, 90);
 		return (1);
 	}
-
-	if ((!is_wall(map, map->ouachcaca.pos,90, 0) && !is_collect(map, map->ouachcaca.pos, 90, 0) && !is_exit(map, map->ouachcaca.pos, 90, 0))&& direction == 3 )
+	if (collision_manager(map, map->ouachcaca.pos, 90, 0) && direction == 3)
 	{
-		ouach_move(map, &map->ouachcaca.pos.x, &map->ouachcaca.sprite_right, 90);
+		ouach_move(map, &map->ouachcaca.pos.x, \
+		&map->ouachcaca.sprite_right, 90);
 		return (1);
 	}
-	if ((!is_wall(map,map->ouachcaca.pos, 0, -90) && !is_collect(map, map->ouachcaca.pos, 0, -90) && !is_exit(map, map->ouachcaca.pos, 0, -90))&& direction == 2 )
+	if (collision_manager(map, map->ouachcaca.pos, 0, -90) && direction == 2)
 	{
 		ouach_move(map, &map->ouachcaca.pos.y, &map->ouachcaca.sprite_up, -90);
 		return (1);
@@ -79,48 +67,16 @@ int go_ouachcaca(t_map *map, int direction)
 	return (0);
 }
 
-void ouach_move(t_map *map, int *xy, t_image *sprite, int dis)
+void	ouach_move(t_map *map, int *xy, t_image *sprite, int dis)
 {
-	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+	put_image(map, map->sprite.floor, \
+	map->ouachcaca.pos.x, map->ouachcaca.pos.y);
 	*xy += dis;
-	put_image(map, *sprite, map->ouachcaca.pos.x, map->ouachcaca.pos.y );
-	if (map->player.pos.x == map->ouachcaca.pos.x && map->player.pos.y == map->ouachcaca.pos.y)
+	put_image(map, *sprite, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
+	if (map->player.pos.x == map->ouachcaca.pos.x && \
+	map->player.pos.y == map->ouachcaca.pos.y)
 	{
 		printf("Ouachcaca got you after %d moves\n", map->nb_move);
 		clean(map, NULL, 0);
-		
 	}
 }
-
-// void ouach_move_right(t_map *map)
-// {
-	
-	
-// 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-// 	map->ouachcaca.pos.x += 90;
-// 	put_image(map, *(t_image *)map->ouachcaca.sprite_right->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y );
-// 	map->ouachcaca.sprite_right = map->ouachcaca.sprite_right->next;
-// }
-
-// void ouach_move_left(t_map *map)
-// {
-// 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-// 	map->ouachcaca.pos.x -= 90;
-// 	put_image(map, *(t_image *)map->ouachcaca.sprite_left->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-// 	map->ouachcaca.sprite_left = map->ouachcaca.sprite_left->next;
-// }
-// void ouach_move_up(t_map *map)
-// {
-// 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-// 	map->ouachcaca.pos.y += 90;
-// 	put_image(map, *(t_image *)map->ouachcaca.sprite_up->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-// 	map->ouachcaca.sprite_up = map->ouachcaca.sprite_up->next;
-// }
-// void ouach_move_down(t_map *map)
-// {
-// 	put_image(map, map->sprite.floor, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-// 	map->ouachcaca.pos.y -= 90;
-// 	put_image(map, *(t_image *)map->ouachcaca.sprite_down->content, map->ouachcaca.pos.x, map->ouachcaca.pos.y);
-// 	map->ouachcaca.sprite_down = map->ouachcaca.sprite_down->next;
-// }
-

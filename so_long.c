@@ -12,8 +12,6 @@
 
 #include "so_long.h"
 
-
-
 int	tab_length(char **tab)
 {
 	int	i;
@@ -33,13 +31,11 @@ char	**tab_trunc(char **tab, char *str)
 	new_tab = NULL;
 	if (!tab || !str)
 		return (0);
-	
 	while (tab[i] && ft_strncmp(tab[i], str, ft_strlen(tab[i])) != 0)
 	{
 		new_tab = tab_join(new_tab, tab[i]);
 		i++;
 	}
-	
 	if (new_tab)
 		new_tab[i] = NULL;
 	table_flip(tab);
@@ -56,19 +52,15 @@ char	**tab_join(char **tab, char *line)
 	if (!tab)
 	{
 		new_tab = ft_calloc(2, sizeof (char *));
-		printf("new_tab =  %p\n", new_tab);
 		new_tab[i++] = ft_strdup(line);
-		printf("new_tab[%d] =  %p\n",i, new_tab[i]);
 		new_tab[i] = NULL;
 		return (new_tab);
 	}
 	len = tab_length(tab);
 	new_tab = ft_calloc ((len + 2), sizeof(char *));
-	printf("new_tab =  %p\n", new_tab);
 	while (i < len)
 	{
 		new_tab[i] = ft_strdup(tab[i]);
-		printf("new_tab[%d] =  %p\n",i, new_tab[i]);
 		i++;
 	}
 	new_tab[i++] = ft_strdup(line);
@@ -91,30 +83,22 @@ void	init_map(t_map *map)
 	map->mlx = NULL;
 	map->mlx_win = NULL;
 	map->player_cel = NULL;
-
-
+	srand(time(0));
 }
-
-
-
-
-
-
-
 
 int	main(int argc, char **argv)
 {
 	t_map	*map;
 
 	map = ft_calloc(1, sizeof (t_map));
-	// map->map = NULL;
 	init_map(map);
-	srand(time(0));
 	if (argc == 2)
 	{
 		if (ft_strncmp(ft_strchr(argv[1], '.'), ".ber", ft_strlen(argv[1])))
 			clean(map, "Le fichier doit être de type .ber\n", 1);
 		set_map(map, argv[1]);
+		close(map->fd);
+		map->map = tab_trunc(map->map, "\n");
 		check_map(map);
 		map->col_on_map = map->nb_collect;
 		map->win_size_x = (ft_strlen(map->map[0]) * 90) - 90;
@@ -122,13 +106,7 @@ int	main(int argc, char **argv)
 		map->mlx = mlx_init();
 		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, \
 		map->win_size_y, "So_long");
-		set_image(map, map->mlx);
-		set_case(map);
-		print_map(map);
-		set_wall(map);
-		set_collectible(map);
-		set_exit(map);
-		print_ouachcaca(map);
+		image_manager(map, map->mlx);
 		mlx_hook(map->mlx_win, 2, 0, keycode_event, map);
 		mlx_hook(map->mlx_win, 17, 0, quit, map);
 		mlx_loop_hook(map->mlx, loop_manager, map);

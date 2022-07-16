@@ -12,39 +12,31 @@
 
 #include "so_long.h"
 
-void	update_cel(t_map *map)
+void	set_cel_image(t_map *map, t_case *cel)
 {
-	t_case	*cel;
-	t_case	*next_line;
-	int		l;
-	int		c;
-
-	c = 0;
-	l = 0;
-	cel = map->first_cel;
-	while (map->map[l])
+	if (cel->state == '1')
 	{
-		next_line = cel->down;
-		while (map->map[l][c] != '\n')
-		{
-			cel->state = map->map[l][c];
-			set_cel_image(map, cel);
-			cel = cel->right;
-			c++;
-		}
-		l++;
-		c = 0;
-		cel = next_line;
+		cel->image = map->sprite.wall;
+		map->nb_wall++;
 	}
+	else if (cel->state == '0')
+		cel->image = map->sprite.floor;
+	else if (cel->state == 'C')
+		cel->image = map->sprite.collectible;
+	else if (cel->state == 'P')
+	{
+		cel->image = map->player.player;
+		map->player.pos = cel->pos;
+	}
+	else if (cel->state == 'E')
+		cel->image = map->sprite.exit;
 }
 
 void	add_cel(t_case *cel)
 {
 	t_case	*new_cel;
-	static int i = 2;
 
 	new_cel = ft_calloc(1, sizeof(t_case));
-	printf("Cel %d =  %p\n", i++, new_cel);
 	cel->right = new_cel;
 	new_cel->left = cel;
 }
