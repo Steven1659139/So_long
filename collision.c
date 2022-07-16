@@ -18,7 +18,7 @@ void	set_wall(t_map *map)
 	t_case	*next_line;
 	int		i;
 
-	map->pos_wall = malloc(sizeof(t_pos) * map->nb_wall);
+	map->pos_wall = ft_calloc(map->nb_wall, sizeof(t_pos));
 	cel = map->first_cel;
 	i = 0;
 	while (cel->down)
@@ -43,7 +43,7 @@ void	set_collectible(t_map *map)
 	t_case	*next_line;
 	int		i;
 
-	map->pos_collect = malloc(sizeof(t_pos) * map->nb_collect);
+	map->pos_collect = ft_calloc( map->nb_collect, sizeof(t_pos) );
 	cel = map->first_cel;
 	i = 0;
 	while (cel->down)
@@ -68,7 +68,7 @@ void	set_exit(t_map *map)
 	t_case	*next_line;
 	int		i;
 
-	map->pos_exit = malloc(sizeof(t_pos) * map->nb_exit);
+	map->pos_exit = ft_calloc(map->nb_exit, sizeof(t_pos));
 	cel = map->first_cel;
 	i = 0;
 	while (cel->down)

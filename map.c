@@ -69,8 +69,8 @@ void	create_first_line(t_map *map)
 	int		x;
 	t_case	*cel;
 
-	cel = malloc(sizeof(t_case));
-	printf("cel 1 creat\n");
+	cel = ft_calloc(1 ,sizeof(t_case));
+	printf("case 1 = %p\n", cel);
 	cel->left = NULL;
 	map->first_cel = cel;
 	x = map->len_line - 1;
@@ -90,8 +90,8 @@ t_case	*create_mid_line(t_case *prev_line)
 	t_case	*new_line;
 	t_case	*temp;
 
-	new_line = malloc(sizeof(t_case));
-	printf("cel 6 creat or new line\n");
+	new_line = ft_calloc(1, sizeof(t_case));
+	printf("cel 6 creat or new line = %p\n", new_line);
 	new_line->left = NULL;
 	temp = new_line;
 	while (prev_line->right)

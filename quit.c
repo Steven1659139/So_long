@@ -29,6 +29,8 @@ void	clean(t_map *map, char *str, int error)
 		image_destroyer(map);
 	if (map->first_cel)
 		free_map(map);
+	free(map);
+	exit(0);
 
 	// if (map->map)
 	// {
@@ -48,11 +50,9 @@ void	clean(t_map *map, char *str, int error)
 	// 	printf("%s", map->map[i++]);
 	// }
 	
-	free(map->mlx);
 	printf("mlx free \n");
 	// free(map->mlx_win);
 
-	free(map);
 	printf("struct free\n");
 	if (error == 1)
 		yo_its_wrong(str);

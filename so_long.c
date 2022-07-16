@@ -55,16 +55,20 @@ char	**tab_join(char **tab, char *line)
 	i = 0;
 	if (!tab)
 	{
-		new_tab = malloc(sizeof (char *) * 2);
+		new_tab = ft_calloc(2, sizeof (char *));
+		printf("new_tab =  %p\n", new_tab);
 		new_tab[i++] = ft_strdup(line);
+		printf("new_tab[%d] =  %p\n",i, new_tab[i]);
 		new_tab[i] = NULL;
 		return (new_tab);
 	}
 	len = tab_length(tab);
-	new_tab = malloc ((len + 2) * sizeof(char *));
+	new_tab = ft_calloc ((len + 2), sizeof(char *));
+	printf("new_tab =  %p\n", new_tab);
 	while (i < len)
 	{
 		new_tab[i] = ft_strdup(tab[i]);
+		printf("new_tab[%d] =  %p\n",i, new_tab[i]);
 		i++;
 	}
 	new_tab[i++] = ft_strdup(line);
@@ -79,6 +83,7 @@ void	init_map(t_map *map)
 	map->nb_move = 0;
 	map->nb_player = 0;
 	map->nb_collect = 0;
+	map->map = NULL;
 	map->pos_collect = NULL;
 	map->pos_exit = NULL;
 	map->pos_wall = NULL;
@@ -101,8 +106,8 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 
-	map = malloc(sizeof (t_map));
-	map->map = NULL;
+	map = ft_calloc(1, sizeof (t_map));
+	// map->map = NULL;
 	init_map(map);
 	srand(time(0));
 	if (argc == 2)

@@ -43,8 +43,8 @@ void	add_cel(t_case *cel)
 	t_case	*new_cel;
 	static int i = 2;
 
-	new_cel = malloc(sizeof(t_case));
-	printf("Cel %d creat\n", i++);
+	new_cel = ft_calloc(1, sizeof(t_case));
+	printf("Cel %d =  %p\n", i++, new_cel);
 	cel->right = new_cel;
 	new_cel->left = cel;
 }
