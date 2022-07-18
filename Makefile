@@ -20,36 +20,34 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
 	@$(MAKE) -C ./MinilibX
-	gcc $(CFLAGS) $(OBJS) ./Libft/libft.a MinilibX/libmlx.a $(MLXFLAGS) -o $(NAME)
+	@gcc $(CFLAGS) $(OBJS) ./Libft/libft.a MinilibX/libmlx.a $(MLXFLAGS) -o $(NAME)
 
 clean:
 	@$(MAKE) -C  Libft fclean
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
 add:
 	@$(MAKE) -C Libft add
-	git add *.c *.h Makefile *.xpm *.ber
-	git status
+	@git add *.c *.h Makefile *.xpm *.ber
+	@git status
 
 norm:
-	norminette *.c *.h
+	@norminette *.c *.h
 
 update:
-	git fetch
-	git pull origin $(BRANCH)
+	@git fetch
+	@git pull origin $(BRANCH)
 
-init:
-	git submodule update --init --recursive
-	./clone_branch.sh
+sub:
+	@git submodule update --init --recursive
 
 stat: add
 	git branch
-
 
 com: stat
 		git commit -m $(COMMIT)
@@ -63,6 +61,3 @@ merge:
 	git merge $(BRANCH)
 go:
 	git checkout $(BRANCH)
-
-test:
-	./test_so_long/tester_so_long.sh
