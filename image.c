@@ -57,7 +57,7 @@ void	image_part1(t_map *map, void *mlx)
 	map->sprite.floor.path = "sprite/floor.xpm";
 	map->sprite.exit.path = "sprite/exit.xpm";
 	map->sprite.wall.path = "sprite/wall.xpm";
-	map->sprite.collectible.path = "sprite/flower_70.xpm";
+	map->sprite.collectible.path = "sprite/flower.xpm";
 	map->player.player.path = "sprite/player/steven_1.xpm";
 	map->sprite.get_rekt.path = "sprite/get_rekt.xpm";
 	map->sprite.p_sprite_1.path = "sprite/player/steven_1.xpm";
