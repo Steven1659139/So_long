@@ -17,8 +17,7 @@ ANSWER ?= $(shell bash -c 'read -p "Is OK ? " answer; echo $$answer')
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@git submodule update --init --recursive
+$(NAME): sub $(OBJS)
 	@$(MAKE) -C ./Libft
 	@$(MAKE) -C ./MinilibX
 	@gcc $(CFLAGS) $(OBJS) ./Libft/libft.a MinilibX/libmlx.a $(MLXFLAGS) -o $(NAME)
