@@ -99,10 +99,10 @@ int	main(int argc, char **argv)
 		set_map(map, argv[1]);
 		close(map->fd);
 		map->map = tab_trunc(map->map, "\n");
-		check_map(map);
-		map->col_on_map = map->nb_collect;
 		map->win_size_x = (ft_strlen(map->map[0]) * 90) - 90;
 		map->win_size_y = (tab_length(map->map) * 90);
+		check_map(map);
+		map->col_on_map = map->nb_collect;
 		map->mlx = mlx_init();
 		map->mlx_win = mlx_new_window(map->mlx, map->win_size_x, \
 		map->win_size_y, "So_long");

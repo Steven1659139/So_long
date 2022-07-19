@@ -111,7 +111,6 @@ typedef struct s_map
 
 }				t_map;
 
-void	my_mlx_pixel_put(t_image *img, int x, int y, int color);
 void	print_tab(char **tab);
 int		check_edge(char *line, t_map *map);
 int		check_line(char *line, t_map *map);
@@ -124,18 +123,12 @@ void	set_image(t_map *map, void *mlx);
 void	put_image(t_map *map, t_image image, int x, int y);
 void	print_map(t_map *map);
 
-int		print_keycode(int keycode);
 int		keycode_event(int keycode, t_map *map);
 void	add_cel(t_case *cel);
 void	create_first_line(t_map *map);
 t_case	*create_mid_line(t_case *prev_line);
 void	set_case(t_map	*map);
 void	set_cel_image(t_map *map, t_case *cel);
-
-void	move_right(t_map *map);
-void	move_up(t_map *map);
-void	move_down(t_map *map);
-void	move_left(t_map *map);
 
 void	set_wall(t_map *map);
 int		is_wall(t_map *map, t_pos pos, int x, int y);
@@ -152,7 +145,6 @@ void	clean(t_map *map, char *str, int error);
 void	free_map(t_map *map);
 void	image_destroyer(t_map *map);
 void	print_move(t_map *map);
-int		print_frog_over_frog(t_map *map);
 void	create_list_sprite(t_map *map);
 
 int		print_player_sprite(t_map *map);
@@ -175,5 +167,7 @@ void	image_part2(t_map *map, void *mlx);
 void	image_part3(t_map *map, void *mlx);
 void	image_manager(t_map *map, void *mlx);
 int		collision_manager(t_map *map, t_pos pos, int move_x, int move_y);
+
+void	check_window(t_map *map);
 
 #endif

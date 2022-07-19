@@ -75,4 +75,11 @@ void	check_map(t_map *map)
 		clean(map, "Il doit y avoir exactement 1 joueur.\n", 1);
 	if (map->nb_exit < 1)
 		clean(map, "Il doit y avoir une sortie.\n", 1);
+	check_window(map);
+}
+
+void	check_window(t_map *map)
+{
+	if (map->win_size_x > 2560 || map->win_size_y > 1440)
+		clean(map, "La carte est trop grande.", 1);
 }
