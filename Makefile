@@ -38,6 +38,7 @@ add:
 
 norm:
 	@norminette *.c *.h
+	@norminette Libft
 
 update:
 	@git fetch
