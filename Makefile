@@ -1,64 +1,40 @@
+.SILENT:
+
 NAME = so_long
 
 SRCS = so_long.c parsing.c image.c map.c event.c move.c set_collision.c cel.c check_collision.c quit.c ouachcaca.c update.c print.c manager.c
 
-OBJS = $(SRCS:.c=.o)
+OBJ_DIR = obj
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 CFLAGS = -Wall -Werror -Wextra -g
-
 MLXFLAGS =  -framework OpenGL -framework AppKit
-
-BRANCH ?= $(shell bash -c 'read -p "Branch: " branch; echo $$branch')
-COMMIT ?= $(shell bash -c 'read -p "Commit: " commit; echo $$commit')
-ANSWER ?= $(shell bash -c 'read -p "Is OK ? " answer; echo $$answer')
-
-# %.o: %.c
-# 	gcc $(CFLAGS) -Imlx -c $< -o $@
 
 all: $(NAME)
 
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	@gcc $(CFLAGS) -Imlx -c $< -o $@
+
 $(NAME): sub $(OBJS)
+	@echo "🐥 Prépare-toi pour l'aventure mon petit pote. 🐥"
 	@$(MAKE) -C ./Libft
 	@$(MAKE) -C ./MinilibX
 	@gcc $(CFLAGS) $(OBJS) ./Libft/libft.a MinilibX/libmlx.a $(MLXFLAGS) -o $(NAME)
+	@echo "👑 LET'S GO ÇA PART ! 👑"
 
 clean:
-	@$(MAKE) -C  Libft fclean
+	@$(MAKE) -C Libft fclean
 	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
+	@echo "🏰✨💨 Le château disparaît dans un nuage de petites paillettes et de boucane sucrée... $(NAME) a été détruit !✨💨🏰"
 	@rm -f $(NAME)
 
 re: fclean all
 
-add:
-	@$(MAKE) -C Libft add
-	@git add *.c *.h Makefile *.xpm *.ber
-	@git status
-
-norm:
-	@norminette *.c *.h
-	@norminette Libft
-
-update:
-	@git fetch
-	@git pull origin $(BRANCH)
-
 sub:
 	@git submodule update --init --recursive
-
-stat: add
-	git branch
-
-com: stat
-		git commit -m $(COMMIT)
-p: com
-	@$(MAKE) -C Libft push
-	git push origin $(BRANCH)
-merge:
-	git checkout master
-	git fetch
-	git pull
-	git merge $(BRANCH)
-go:
-	git checkout $(BRANCH)

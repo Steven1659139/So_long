@@ -2,6 +2,9 @@
 
 **So_Long** est un jeu en 2D développé dans le cadre du programme de l'école 42. Le joueur contrôle un personnage qui doit naviguer dans un labyrinthe, collecter des objets, et atteindre une sortie. Le jeu utilise la bibliothèque graphique MiniLibX pour gérer l'affichage et les événements.
 
+
+![Exemple de carte](exemple1.png)
+
 ## Fonctionnalités
 
 - **Gestion des Sprites et des Images** : Chargement et gestion des images au format XPM pour représenter les différents éléments graphiques du jeu (personnage principal, objets collectables, murs, sorties).
@@ -9,6 +12,8 @@
 - **Création Dynamique de la Carte** : Lecture des fichiers de carte `.ber` pour générer la structure du niveau. La carte est construite dynamiquement, ligne par ligne, en reliant chaque cellule aux précédentes pour former une structure cohérente.
 - **Animations des Personnages** : Utilisation de listes chaînées pour gérer les animations du personnage principal, avec alternance des sprites en fonction des actions du joueur.
 - **Gestion des Événements en Temps Réel** : Implémentation de boucles d'événements pour gérer les déplacements du joueur et les mises à jour de l'affichage en temps réel.
+
+![Exemple de carte](exemple2.png)
 
 ## Installation
 

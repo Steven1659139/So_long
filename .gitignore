@@ -1,4 +1,40 @@
-.DS_Store 
+# Ignorer les fichiers objets et le répertoire obj
 *.o
-*.a
+obj/
 
+# Ignorer l'exécutable principal
+so_long
+
+# Ignorer les fichiers de sauvegarde temporaires
+*~
+*.swp
+*.tmp
+*.bak
+*.old
+
+# Ignorer les fichiers de logs
+*.log
+
+# Ignorer les fichiers de Mac OS
+.DS_Store
+
+# Ignorer les fichiers spécifiques à Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Ignorer les fichiers générés par Makefile
+Makefile~
+
+# Ignorer les fichiers de dépendances
+.deps/
+
+# Ignorer les répertoires de bibliothèque compilée
+Libft/*.a
+Libft/*.o
+MinilibX/*.a
+
+# Ignorer les fichiers compilés de la MinilibX
+MinilibX/*.o
+
+# Ignorer les sous-modules git
+.gitmodules
