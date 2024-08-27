@@ -42,11 +42,12 @@ Pour installer et exécuter **So_Long**, suivez les étapes ci-dessous :
 
 Les cartes sont stockées dans des fichiers `.ber`. Voici un exemple de format de carte :
 
-111111
+```111111
 100001
 101C01
 10P0E1
 111111
+```
 
 
 - `1` : Mur
